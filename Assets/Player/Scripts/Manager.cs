@@ -5,7 +5,7 @@ public class Manager : MonoBehaviour
 {
 	private Camera playerCamera;
 	public float interactDistance = 1.25f;
-	public LayerMask interactablesLayer;
+	public LayerMask layerMask;
 	void Start()
 	{
 		playerCamera = GetComponentInChildren<Camera>();
@@ -14,13 +14,9 @@ public class Manager : MonoBehaviour
 	void Update()
 	{
 		RaycastHit hitInfo;
-		if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, interactDistance, interactablesLayer))
+		if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, interactDistance, layerMask))
 		{
-			//print ("hit something at " + hitInfo.distance);
-			if (Input.GetButtonDown("Interact"))
-			{
-				hitInfo.transform.GetComponent<Interactable>().Interact(this.playerCamera.transform);
-			}
+			print ("hit something at " + hitInfo.distance);
 		}
 	}
 
