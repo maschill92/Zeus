@@ -3,7 +3,7 @@ using System.Collections;
 
 public class guiTime : MonoBehaviour {
 
-	private double currentTime = Time.time;
+	private double currentTime;
 
 	void Start() {
 		guiText.text = currentTime.ToString ();
