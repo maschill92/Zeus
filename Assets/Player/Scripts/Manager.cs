@@ -17,6 +17,11 @@ public class Manager : MonoBehaviour
 		if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, interactDistance, layerMask))
 		{
 			print ("hit something at " + hitInfo.distance);
+			if (Input.GetButtonDown("Interact"))
+			{
+				Rigidbody r = this.playerCamera.GetComponentInChildren<Rigidbody>();
+				hitInfo.transform.gameObject.GetComponent<Interactable>().Interact(r.transform);
+			}
 		}
 	}
 
