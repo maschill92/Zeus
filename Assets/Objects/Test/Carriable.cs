@@ -12,6 +12,7 @@ public abstract class Carriable : Interactable {
 		{
 			rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
 			joint = gameObject.AddComponent<SpringJoint>();
+			joint.autoConfigureConnectedAnchor = false;
 			joint.connectedBody = interactor.rigidbody;
 			joint.anchor = Vector3.zero;
 			joint.connectedAnchor = Vector3.zero;

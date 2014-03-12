@@ -19,8 +19,8 @@ public class Manager : MonoBehaviour
 			print ("hit something at " + hitInfo.distance);
 			if (Input.GetButtonDown("Interact"))
 			{
-				Rigidbody r = this.playerCamera.GetComponentInChildren<Rigidbody>();
-				hitInfo.transform.gameObject.GetComponent<Interactable>().Interact(r.transform);
+				hitInfo.transform.GetComponent<Interactable>().
+					Interact(this.playerCamera.transform.FindChild("JointPoint"));
 			}
 		}
 	}
