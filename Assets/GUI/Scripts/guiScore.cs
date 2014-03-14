@@ -3,19 +3,46 @@ using System.Collections;
 
 public class guiScore : MonoBehaviour {
 
-	public int totalScore = 0;
-	
+	private int totalScore = 0;
+	private  string displayScore = "";
+
+
 	void Start() {
-		guiText.text = totalScore.ToString();
-		guiText.transform.position = new Vector3 (0.95f, 0.975f, 0.0f);
+		guiText.text = "Score:\t\t\t" + totalScore.ToString();
+		guiText.transform.position = new Vector3 (0.85f, 0.965f, 0.0f);
+		guiText.fontSize = 20;
 	}
-	
-	void Increase() {
-		totalScore += 1000;
-		guiText.text = totalScore.ToString();
+
+	void Update() {
+		if (totalScore == 0) {
+			displayScore = "000000";
+		}
+		else if (totalScore < 10) {
+			displayScore = "00000" + totalScore;
+		}
+		else if (totalScore < 100) {
+			displayScore = "00" + totalScore;
+		}
+		else if (totalScore < 1000) {
+			displayScore = "000" + totalScore;
+		}
+		else if (totalScore < 10000) {
+			displayScore = "00" + totalScore;
+		}
+		else if (totalScore < 100000) {
+			displayScore = "0" + totalScore;
+		}
+		else {
+			displayScore = "" + totalScore;
+		}
+		guiText.text = "Score:\t\t\t" + displayScore;
+	}
+
+	void Increase(int value) {
+		totalScore += value;
 	}
 	
 	void Reset() {
-		guiText.text = "000000";
+		totalScore = 0;
 	}
 }
