@@ -16,7 +16,19 @@ public class Manager : MonoBehaviour
 		RaycastHit hitInfo;
 		if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, interactDistance, layerMask))
 		{
-			print ("hit something at " + hitInfo.distance);
+			if(Input.GetButtonDown("Interact"))
+			{
+				hitInfo.transform.gameObject.GetComponent<Interactable>().Interact(this.playerCamera.GetComponentInChildren<Rigidbody>().transform);
+			}
+		}
+	}
+
+	void OnControllerColliderHit(ControllerColliderHit other)
+	{
+		if(other.gameObject.name == "PressureSwitch")
+		{
+			print ("hit pressureSwitch!");
+			other.gameObject.GetComponent<PressureSwitch>().Trigger();
 		}
 	}
 }
