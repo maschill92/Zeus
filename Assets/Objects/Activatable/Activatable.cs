@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Activatable : MonoBehaviour {
+public abstract class Activatable : MonoBehaviour {
 
-	public void Activate()
-	{
-
-	}
+	public abstract void Activate();
+	public abstract void Deactivate();
 }

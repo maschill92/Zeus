@@ -22,13 +22,4 @@ public class Manager : MonoBehaviour
 			}
 		}
 	}
-
-	void OnControllerColliderHit(ControllerColliderHit other)
-	{
-		if(other.gameObject.name == "PressureSwitch")
-		{
-			print ("hit pressureSwitch!");
-			other.gameObject.GetComponent<PressureSwitch>().Trigger();
-		}
-	}
 }
