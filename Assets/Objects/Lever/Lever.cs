@@ -4,25 +4,35 @@ using System.Collections;
 public class Lever : Interactable {
 
 	public Activatable[] thingsToActivate;
-	private bool isTriggered = false;
+	private bool isOn = false;
+	public bool isOneTimeTrigger = false;
 
 	public override void Interact(Transform interactor)
 	{
 		print ("lever interact");
-		Trigger ();
+		Toggle ();
 	}
 
-	public void Trigger()
+	public void Toggle()
 	{
-		if (!isTriggered)
+		if (!isOn)
 		{
 			for(int i = 0; i < thingsToActivate.Length; i++)
 			{
 				thingsToActivate[i].Activate();
 			}
-			
+			isOn = true;
 			// ANIMATE NOW
 		}
-		isTriggered = true;
+		// only allow deactivation if the lever allows itself to be toggled indefinitely
+		else if (!isOneTimeTrigger)
+		{
+			for (int i = 0; i < thingsToActivate.Length; i++)
+			{
+				thingsToActivate[i].Deactivate();
+			}
+			isOn = false;
+			// ANIMATE NOW
+		}
 	}
 }
