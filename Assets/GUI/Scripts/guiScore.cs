@@ -38,11 +38,11 @@ public class guiScore : MonoBehaviour {
 		guiText.text = "Score:\t\t\t" + displayScore;
 	}
 
-	void Increase(int value) {
+	public void Increase(int value) {
 		totalScore += value;
 	}
 	
-	void Reset() {
+	public void Reset() {
 		totalScore = 0;
 	}
 }

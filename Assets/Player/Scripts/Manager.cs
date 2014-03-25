@@ -6,6 +6,7 @@ public class Manager : MonoBehaviour
 	private Camera playerCamera;
 	public float interactDistance = 1.25f;
 	public LayerMask layerMask;
+
 	void Start()
 	{
 		playerCamera = GetComponentInChildren<Camera>();

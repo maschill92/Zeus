@@ -13,19 +13,19 @@ public class guiHealth : MonoBehaviour {
 		guiText.fontSize = 16;
 	}
 
-	void Increase() {
+	public void Increase() {
 		currentHealth += 1;
 		displayHealth = "x " + currentHealth;
 		guiText.text = displayHealth;
 	}
 
-	void Decrease() {
+	public void Decrease() {
 		currentHealth -= 1;
 		displayHealth = "x " + currentHealth;
 		guiText.text = displayHealth;
 	}
 		
-	void Reset() {
+	public void Reset() {
 		currentHealth = 3;
 		displayHealth = "x " + currentHealth;
 		guiText.text = displayHealth;

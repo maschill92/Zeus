@@ -13,22 +13,21 @@ public class guiKey : MonoBehaviour {
 		guiText.fontSize = 16;
 	}
 
-	void Increase() {
+	public void Increase() {
 		currentKeys += 1;
 		displayKeys = "x " + currentKeys;
 		guiText.text = displayKeys;
 	}
 
-	void Decrease() {
+	public void Decrease() {
 		currentKeys -= 1;
 		displayKeys = "x " + currentKeys;
 		guiText.text = displayKeys;
 	}
 
-	void Reset() {
+	public void Reset() {
 		currentKeys = 3;
 		displayKeys = "x " + currentKeys;
 		guiText.text = displayKeys;
-	}
-	
+	}	
 }

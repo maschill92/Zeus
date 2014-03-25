@@ -38,7 +38,7 @@ public class guiTime : MonoBehaviour {
 		guiText.text = "Time:\t\t\t" + displayTime;
 	}
 	
-	void Reset() {
+	public void Reset() {
 		currentMinute = 0;
 		currentSecond = 0;
 	}
