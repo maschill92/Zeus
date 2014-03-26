@@ -500,105 +500,6 @@ ModelImporter:
     4300192: Cube_024
     4300194: Cube_025
     4300196: Cube_026
-    6400000: Cube
-    6400002: Cube_000
-    6400004: Cube_001
-    6400006: Cube_002
-    6400008: Cube_003
-    6400010: Cube_004
-    6400012: Cube_005
-    6400014: Cube_006
-    6400016: Cube_007
-    6400018: Cube_008
-    6400020: Cube_009
-    6400022: Cube_010
-    6400024: Cube_011
-    6400026: Cube_012
-    6400028: Cube_013
-    6400030: Cube_014
-    6400032: Cube_015
-    6400034: Cube_016
-    6400036: Cube_017
-    6400038: Cube_018
-    6400040: Cube_019
-    6400042: Cube_020
-    6400044: Cube_021
-    6400046: Cube_022
-    6400048: Cube_023
-    6400050: Cube_024
-    6400052: Cube_025
-    6400054: Cube_026
-    6400056: Cube_027
-    6400058: Cube_028
-    6400060: Cube_029
-    6400062: Cube_030
-    6400064: Cylinder_000
-    6400066: Cylinder_001
-    6400068: Cylinder_002
-    6400070: Cylinder_003
-    6400072: Cylinder_004
-    6400074: Cylinder_005
-    6400076: Cylinder_006
-    6400078: Cylinder_007
-    6400080: Cylinder_008
-    6400082: Cylinder_009
-    6400084: Cylinder_010
-    6400086: Cylinder_011
-    6400088: Cylinder_012
-    6400090: Cylinder_013
-    6400092: Cylinder_014
-    6400094: Cylinder_015
-    6400096: Cylinder_016
-    6400098: Cylinder_017
-    6400100: Cylinder_018
-    6400102: Cylinder_019
-    6400104: Cylinder_020
-    6400106: Cylinder_021
-    6400108: Cylinder_022
-    6400110: Cylinder_023
-    6400112: Cylinder_024
-    6400114: Cylinder_025
-    6400116: Cylinder_026
-    6400118: Cylinder_027
-    6400120: Cylinder_028
-    6400122: Cylinder_029
-    6400124: Cylinder_030
-    6400126: Cylinder_031
-    6400128: Cylinder_032
-    6400130: Cylinder_033
-    6400132: Cylinder_034
-    6400134: Cylinder_035
-    6400136: Cylinder_036
-    6400138: Cylinder_037
-    6400140: Cylinder_038
-    6400142: Cylinder_039
-    6400144: Cylinder_040
-    6400146: Cylinder_041
-    6400148: Cylinder_042
-    6400150: Cylinder_043
-    6400152: Cylinder_044
-    6400154: Cylinder_045
-    6400156: Cylinder_046
-    6400158: Cylinder_047
-    6400160: Cylinder_048
-    6400162: Cylinder_049
-    6400164: Cylinder_050
-    6400166: Cylinder_051
-    6400168: Cylinder_052
-    6400170: Cylinder_053
-    6400172: Cylinder_054
-    6400174: Cylinder_055
-    6400176: Cylinder_056
-    6400178: Cylinder_057
-    6400180: Cylinder_058
-    6400182: Cylinder_059
-    6400184: Cylinder_060
-    6400186: Cylinder_061
-    6400188: Cylinder_062
-    6400190: Cylinder_063
-    6400192: Cylinder_064
-    6400194: Cylinder_065
-    6400196: Cylinder_066
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -621,7 +522,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
