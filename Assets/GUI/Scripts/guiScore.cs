@@ -3,9 +3,8 @@ using System.Collections;
 
 public class guiScore : MonoBehaviour {
 
-	private int totalScore = 0;
+	public int totalScore = 0;
 	private  string displayScore = "";
-
 
 	void Start() {
 		guiText.text = "Score:\t\t\t" + totalScore.ToString();

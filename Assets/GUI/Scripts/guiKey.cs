@@ -19,8 +19,8 @@ public class guiKey : MonoBehaviour {
 		guiText.text = displayKeys;
 	}
 
-	public void Decrease() {
-		currentKeys -= 1;
+	public void Decrease(int value) {
+		currentKeys -= value;
 		displayKeys = "x " + currentKeys;
 		guiText.text = displayKeys;
 	}
