@@ -3,13 +3,12 @@ using System.Collections;
 
 public class guiScore : MonoBehaviour {
 
-	public int totalScore = 0;
-	private  string displayScore = "";
+	public int totalScore;
+	private  string displayScore;
 
 	void Start() {
-		guiText.text = "Score:\t\t\t" + totalScore.ToString();
-		guiText.transform.position = new Vector3 (0.85f, 0.965f, 0.0f);
-		guiText.fontSize = 20;
+		totalScore = 0;
+		displayScore = "";
 	}
 
 	void Update() {
@@ -34,11 +33,21 @@ public class guiScore : MonoBehaviour {
 		else {
 			displayScore = "" + totalScore;
 		}
-		guiText.text = "Score:\t\t\t" + displayScore;
+		displayScore = "Score:\t\t" + displayScore;
+	}
+
+	void OnGUI () {
+		GUI.skin.label.fontSize = 20;
+		GUI.color = Color.white;
+		GUI.Label (new Rect ((Screen.width - (Screen.width / 6)), (Screen.height / 20), 200, 64), displayScore);
 	}
 
 	public void Increase(int value) {
 		totalScore += value;
+	}
+
+	public void Set(int value) {
+		totalScore = value;
 	}
 	
 	public void Reset() {

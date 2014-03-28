@@ -3,35 +3,45 @@ using System.Collections;
 
 public class guiHealth : MonoBehaviour {
 
-	public int currentHealth = 3;
-	private string displayHealth = "";
+	public int currentHealth;
+	private string displayHealth;
 
+	private Texture healthImage;
+	
 	void Start() {
+		currentHealth = 3;
+		displayHealth = "";
+		healthImage = Resources.Load ("Heart") as Texture;
+	}
+
+	void Update() {
 		displayHealth = "x " + currentHealth;
-		guiText.text = displayHealth;
-		guiText.transform.position = new Vector3(.07f, 0.95f, 0.0f);
-		guiText.fontSize = 16;
+	}
+
+	void OnGUI () {
+		GUI.skin.label.fontSize = 16;
+		GUI.color = Color.white;
+		GUI.Label (new Rect((Screen.width / 12), (Screen.height / 20), 64, 64), displayHealth);
+		GUI.Label (new Rect ((Screen.width / 50), (Screen.height / 50), 64, 64), healthImage);
+	}
+
+	public void Increase() {
+		currentHealth += 1;
+	}
+
+	public void Decrease() {
+		currentHealth -= 1;
 	}
 
 	public void Set(int value) {
 		currentHealth = value;
 	}
-
-	public void Increase() {
-		currentHealth += 1;
-		displayHealth = "x " + currentHealth;
-		guiText.text = displayHealth;
-	}
-
-	public void Decrease() {
-		currentHealth -= 1;
-		displayHealth = "x " + currentHealth;
-		guiText.text = displayHealth;
+	
+	public int Get() {
+		return currentHealth;
 	}
 		
 	public void Reset() {
 		currentHealth = 3;
-		displayHealth = "x " + currentHealth;
-		guiText.text = displayHealth;
 	}
 }

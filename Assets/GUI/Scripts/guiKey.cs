@@ -3,31 +3,41 @@ using System.Collections;
 
 public class guiKey : MonoBehaviour {
 
-	public int currentKeys = 0;
-	public string displayKeys = "";
-	
+	public int currentKeys;
+	public string displayKeys;
+
+	private Texture keyImage;
+
 	void Start() {
+		currentKeys = 0;
+		displayKeys = "";
+		keyImage = Resources.Load ("Key") as Texture;
+	}
+
+	void Update() {
 		displayKeys = "x " + currentKeys;
-		guiText.text = displayKeys;
-		guiText.transform.position = new Vector3(.07f, 0.85f, 0.0f);
-		guiText.fontSize = 16;
+	}
+
+	void OnGUI () {
+		GUI.skin.label.fontSize = 16;
+		GUI.color = Color.white;
+		GUI.Label (new Rect((Screen.width / 12), (Screen.height / 8), 64, 64), displayKeys);
+		GUI.Label (new Rect ((Screen.width / 50), (Screen.height / 10), 64, 64), keyImage);
 	}
 
 	public void Increase() {
 		currentKeys += 1;
-		displayKeys = "x " + currentKeys;
-		guiText.text = displayKeys;
 	}
 
 	public void Decrease(int value) {
 		currentKeys -= value;
-		displayKeys = "x " + currentKeys;
-		guiText.text = displayKeys;
+	}
+
+	public void Set(int value) {
+		currentKeys = value;
 	}
 
 	public void Reset() {
-		currentKeys = 3;
-		displayKeys = "x " + currentKeys;
-		guiText.text = displayKeys;
+		currentKeys = 0;
 	}	
 }

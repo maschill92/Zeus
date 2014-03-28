@@ -3,15 +3,16 @@ using System.Collections;
 
 public class guiTime : MonoBehaviour {
 
-	private float currentSecond = 0;
-	private float currentMinute = 0;
-	private float lastUpdate = 0;
-	private string displayTime = "";
+	private float currentSecond;
+	private float currentMinute;
+	private float lastUpdate;
+	private string displayTime;
 
 	void Start() {
-		guiText.text = "Time:\t\t\t00:00";
-		guiText.transform.position = new Vector3 (0.85f, 0.9f, 0.0f);
-		guiText.fontSize = 20;
+		currentSecond = 0;
+		currentMinute = 0;
+		lastUpdate = 0;
+		displayTime = "";
 	}
 	
 	void Update() {
@@ -35,7 +36,18 @@ public class guiTime : MonoBehaviour {
 		else { // case 4: mm:ss
 			displayTime = "" + currentMinute.ToString () + ":" + currentSecond.ToString ();
 		}
-		guiText.text = "Time:\t\t\t" + displayTime;
+		displayTime = "Time:\t\t" + displayTime;
+	}
+
+	void OnGUI () {
+		GUI.skin.label.fontSize = 20;
+		GUI.color = Color.white;
+		GUI.Label (new Rect ((Screen.width - (Screen.width / 6)), (Screen.height / 8), 200, 64), displayTime);
+	}
+
+	public void Set(int minute, int second) {
+		currentMinute = minute;
+		currentSecond = second;
 	}
 	
 	public void Reset() {

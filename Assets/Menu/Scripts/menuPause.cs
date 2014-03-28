@@ -3,8 +3,8 @@ using System.Collections;
 
 public class menuPause : MonoBehaviour
 {
-	private float startTime = 0.1f;
 	private float savedTimeScale;
+
 	public string[] credits = { // change in future
 		"A Game Created By:",
 		"Ben Carpenter",
@@ -35,6 +35,8 @@ public class menuPause : MonoBehaviour
 		playerCamera = GameObject.Find ("Player").GetComponent<MouseLook>();
 		mainCamera = Camera.main.GetComponent<MouseLook>();
 		GetComponent<HeadBob> ().enabled = true;
+		GetComponent<guiCrosshair> ().enabled = true;
+		AudioListener.pause = false;
 		mouseImage = Resources.Load ("MouseKey") as Texture;
 		wImage = Resources.Load ("WKey") as Texture;
 		aImage = Resources.Load ("AKey") as Texture;
@@ -49,7 +51,7 @@ public class menuPause : MonoBehaviour
 		if (Input.GetKeyDown("escape") || Input.GetKeyDown ("return")) {
 			switch (currentPage) {
 				case Page.None: 
-					PauseGame(); 
+					PauseGame(true); 
 					break;
 				default: 
 					currentPage = Page.Main;
@@ -57,18 +59,14 @@ public class menuPause : MonoBehaviour
 			}
 		}
 	}
-
-	bool IsBeginning() {
-		return (Time.time < startTime);
-	}
-
+	
 	void OnGUI () {
+		GUI.color = Color.white;
 		if (IsGamePaused()) {
-			GUI.color = Color.white;
 			switch (currentPage) {
-			case Page.Main: MainPauseMenu(); break;
-			case Page.Controls: ShowControls (); break;
-			case Page.Credits: ShowCredits(); break;
+				case Page.Main: MainPauseMenu(); break;
+				case Page.Controls: ShowControls (); break;
+				case Page.Credits: ShowCredits(); break;
 			}
 		}   
 	}
@@ -138,7 +136,7 @@ public class menuPause : MonoBehaviour
 	void MainPauseMenu() {
 		BeginPage(200,200);
 		if (GUILayout.Button ("Resume")) {
-			UnPauseGame();
+			UnPauseGame(true);
 		}
 		if (GUILayout.Button ("Controls")) {
 			currentPage = Page.Controls;
@@ -155,33 +153,33 @@ public class menuPause : MonoBehaviour
 		EndPage();
 	}
 
-	void PauseGame() {
+	public void PauseGame(bool check) {
 		savedTimeScale = Time.timeScale;
 		Time.timeScale = 0;
 		AudioListener.pause = true;
 		playerCamera.enabled = false;
 		mainCamera.enabled = false;
 		GetComponent<HeadBob> ().enabled = false;
-		currentPage = Page.Main;
+		GetComponent<guiCrosshair> ().enabled = false;
+		if (check) { // Death flag check. If false it does not display the Pause Menu and only pauses the game.
+			currentPage = Page.Main;
+		}
 	}
 	
-	void UnPauseGame() {
+	public void UnPauseGame(bool check) {
 		Time.timeScale = savedTimeScale;
 		GetComponent<MouseLook>().enabled = true;
 		AudioListener.pause = false;
 		playerCamera.enabled = true;
 		mainCamera.enabled = true;
 		GetComponent<HeadBob> ().enabled = true;
-		currentPage = Page.None;
+		GetComponent<guiCrosshair> ().enabled = true;
+		if (check) {
+			currentPage = Page.None;
+		}
 	}
 	
 	bool IsGamePaused() {
 		return (Time.timeScale == 0);
-	}
-	
-	void OnApplicationPause(bool pause) {
-		if (IsGamePaused()) {
-			AudioListener.pause = true;
-		}
 	}
 }
