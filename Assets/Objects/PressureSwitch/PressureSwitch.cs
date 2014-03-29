@@ -8,6 +8,11 @@ public class PressureSwitch : MonoBehaviour
 	private bool isTriggered = false; 		// is the switch currently triggered?
 	private short triggeringObjectCount;	// allows a player to walk on a switch while a rock is on it without 'UnTriggering'
 
+	private Vector3 targetLocation;
+	private Vector3 originalLoc;
+	public float heightToLower = 0.05f;
+	public float slideSpeed = 2f;
+
 	private void Trigger()
 	{
 		triggeringObjectCount++;
@@ -17,8 +22,7 @@ public class PressureSwitch : MonoBehaviour
 			{
 				thingsToActivate[i].Activate();
 			}
-			
-			// ANIMATE NOW
+			targetLocation.y = originalLoc.y - heightToLower;
 		}
 		isTriggered = true;
 	}
@@ -34,7 +38,44 @@ public class PressureSwitch : MonoBehaviour
 				thingsToActivate[i].Deactivate();
 			}
 			isTriggered = false;
-			// ANIMATE NOW
+			targetLocation.y = originalLoc.y;
+		}
+	}
+
+	void Start()
+	{
+		originalLoc = this.transform.position;
+		targetLocation = originalLoc;
+	}
+
+	void Update()
+	{
+		// Move up
+		if (this.transform.position.y < targetLocation.y)
+		{
+			float newY = this.transform.position.y + (slideSpeed * Time.deltaTime);
+			if (newY > targetLocation.y)
+			{
+				this.transform.position = new Vector3(originalLoc.x, targetLocation.y, originalLoc.z);
+			}
+			else
+			{
+				this.transform.position = new Vector3(originalLoc.x, newY, originalLoc.z);
+			}
+		}
+
+		// Move down
+		else if (this.transform.position.y > targetLocation.y)
+		{
+			float newY = this.transform.position.y - (slideSpeed * Time.deltaTime);
+			if (newY < targetLocation.y)
+			{
+				this.transform.position = new Vector3(originalLoc.x, targetLocation.y, originalLoc.z);
+			}
+			else
+			{
+				this.transform.position = new Vector3(originalLoc.x, newY, originalLoc.z);
+			}
 		}
 	}
 
