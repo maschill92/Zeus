@@ -45,7 +45,14 @@ public class HeadBob : MonoBehaviour
 		{
 			waveslice = Mathf.Sin(timer);
 			timer += bobSpeed;
-			if (timer > Mathf.PI * 2) timer -= Mathf.PI * 2;
+			if (timer > Mathf.PI * 2) 
+			{
+				if(characterMotor.movement.velocity.magnitude != 0.0f)
+				{
+					audio.Play ();
+				}
+				timer -= Mathf.PI * 2;
+			}
 		}
 
 		if (waveslice != 0.0f)
@@ -55,6 +62,7 @@ public class HeadBob : MonoBehaviour
 			totalAxes = Mathf.Clamp(totalAxes, 0.0f, 1.0f);
 			amountToMove *= totalAxes;
 			transform.localPosition = new Vector3(transform.localPosition.x, midpoint + amountToMove, transform.localPosition.z);
+			print (waveslice);
 		}
 		else
 		{
