@@ -21,12 +21,14 @@ public class puzzleLever : Interactable {
 	{		
 		isOn = true;
 		renderer.material = onMat;
+		// ANIMATE NOW
 		master.LeverActivated(INDEX);
 	}
 
 	public void Deactivate()
 	{
 		isOn = false;
+		// ANIMATE NOW
 		renderer.material = offMat;
 	}
 }
