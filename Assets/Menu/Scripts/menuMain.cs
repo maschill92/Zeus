@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class menuPause : MonoBehaviour
-{
-	private float savedTimeScale;
+public class menuMain : MonoBehaviour {
 
-	private MouseLook playerCamera;
-	private	MouseLook mainCamera;
-	
+	public string[] credits = { // change in future
+		"A Game Created By:",
+		"Ben Carpenter",
+		"Randall Howatt",
+		"Alex Lewis",
+		"Michael Schilling"} ;
+
 	private Texture mouseImage;
 	private Texture wImage;
 	private Texture aImage;
@@ -16,20 +18,15 @@ public class menuPause : MonoBehaviour
 	private Texture eImage;
 	private Texture spaceImage;
 	private Texture shiftImage;
-	
+
 	public enum Page {
-		None, Main, Controls
+		None, Main, Credits, Controls
 	}
 	
 	private Page currentPage;
-	
-	void Start() {
-		Time.timeScale = 1;
-		playerCamera = GameObject.Find ("Player").GetComponent<MouseLook>();
-		mainCamera = Camera.main.GetComponent<MouseLook>();
-		GetComponent<HeadBob> ().enabled = true;
-		GetComponent<guiCrosshair> ().enabled = true;
-		AudioListener.pause = false;
+
+	void Start () {
+		currentPage = Page.Main;
 		mouseImage = Resources.Load ("MouseKey") as Texture;
 		wImage = Resources.Load ("WKey") as Texture;
 		aImage = Resources.Load ("AKey") as Texture;
@@ -39,37 +36,39 @@ public class menuPause : MonoBehaviour
 		spaceImage = Resources.Load ("SpaceKey") as Texture;
 		shiftImage = Resources.Load ("ShiftKey") as Texture;
 	}
-	
-	void LateUpdate () {
-		if (Input.GetKeyDown("escape") || Input.GetKeyDown ("return")) {
-			switch (currentPage) {
-			case Page.None: 
-				PauseGame(true); 
-				break;
-			default: 
-				currentPage = Page.Main;
-				break;
-			}
-		}
-	}
-	
+
+
 	void OnGUI () {
 		GUI.color = Color.white;
 		GUI.skin.label.fontSize = 12;
-		if (IsGamePaused()) {
-			switch (currentPage) {
-				case Page.Main: MainPauseMenu(); break;
-				case Page.Controls: ShowControls (); break;
-			}
-		}   
+		switch (currentPage) {
+			case Page.Main: MainMenu(); break;
+			case Page.Credits: ShowCredits(); break;
+			case Page.Controls: ShowControls(); break;
+		} 
 	}
-	
+
+	void ShowCredits() {
+		BeginPage(300,300);
+		foreach(string credit in credits) {
+			GUILayout.Label(credit);
+		}
+		EndPage();
+	}
+
 	void ShowBackButton() {
 		if (GUI.Button(new Rect((Screen.width / 2), ((Screen.height / 2) + (Screen.height / 3)), 75, 20), "Back")) {
 			currentPage = Page.Main;
 		}
 	}
-	
+
+	void EndPage() {
+		GUILayout.EndArea();
+		if (currentPage != Page.Main) {
+			ShowBackButton();
+		}
+	}
+
 	void ShowControls() {
 		BeginPage (200, 600);
 		GUILayout.BeginHorizontal ();
@@ -106,62 +105,27 @@ public class menuPause : MonoBehaviour
 		GUILayout.EndHorizontal ();
 		EndPage ();
 	}
-	
-	void BeginPage(int width, int height) {
-		GUILayout.BeginArea( new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height));
-	}
-	
-	void EndPage() {
-		GUILayout.EndArea();
-		if (currentPage != Page.Main) {
-			ShowBackButton();
-		}
-	}
-	
-	void MainPauseMenu() {
+
+	void MainMenu() {
 		BeginPage(200,200);
-		if (GUILayout.Button ("Resume")) {
-			UnPauseGame(true);
+		if (GUILayout.Button ("Start Game")) {
+			// play intro movie
+			currentPage = Page.None;
+			Application.LoadLevel ("Level1"); 
 		}
 		if (GUILayout.Button ("Controls")) {
 			currentPage = Page.Controls;
 		}
-		if (GUILayout.Button ("Exit to Main Menu")) {
-			Application.LoadLevel ("MainMenu");
+		if (GUILayout.Button ("Credits")) {
+			currentPage = Page.Credits;
 		}
 		if (GUILayout.Button ("Exit to Desktop")) {
 			Application.Quit ();
 		}
 		EndPage();
 	}
-	
-	public void PauseGame(bool check) {
-		savedTimeScale = Time.timeScale;
-		Time.timeScale = 0;
-		AudioListener.pause = true;
-		playerCamera.enabled = false;
-		mainCamera.enabled = false;
-		GetComponent<HeadBob> ().enabled = false;
-		GetComponent<guiCrosshair> ().enabled = false;
-		if (check) { // Death flag check. If false it does not display the Pause Menu and only pauses the game.
-			currentPage = Page.Main;
-		}
-	}
-	
-	public void UnPauseGame(bool check) {
-		Time.timeScale = savedTimeScale;
-		GetComponent<MouseLook>().enabled = true;
-		AudioListener.pause = false;
-		playerCamera.enabled = true;
-		mainCamera.enabled = true;
-		GetComponent<HeadBob> ().enabled = true;
-		GetComponent<guiCrosshair> ().enabled = true;
-		if (check) {
-			currentPage = Page.None;
-		}
-	}
-	
-	bool IsGamePaused() {
-		return (Time.timeScale == 0);
+
+	void BeginPage(int width, int height) {
+		GUILayout.BeginArea( new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height));
 	}
 }

@@ -4,47 +4,47 @@ using System.Collections;
 public class menuDeath : MonoBehaviour {
 	
 	private bool isDead;
-
+	
 	public enum Page {
 		None, Main
 	}
-
+	
 	private Page currentPage;
 	
 	void Start () {
 		isDead = false;
 	}
-
+	
 	void LateUpdate () {
 		if (isDead ||  Input.GetKeyDown ("l")) { // remove 'L' input when player killing is implemented
 			switch(currentPage) {
-				case Page.None:
-					StartDeath();
-					break;
-				default:
-					currentPage = Page.Main;
-					break;
+			case Page.None:
+				StartDeath();
+				break;
+			default:
+				currentPage = Page.Main;
+				break;
 			}
 		}
 	}
-
+	
 	void OnGUI () {
 		GUI.color = Color.white;
 		if (isDead) {
 			switch (currentPage) {
-				case Page.Main: DeathMenu(); break;
+			case Page.Main: DeathMenu(); break;
 			}
 		}   
 	}
-
+	
 	public void killPlayer() { // call to display Death Menu
 		isDead = true;
 	}
-
+	
 	void BeginPage(int width, int height) {
 		GUILayout.BeginArea( new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height));
 	}
-
+	
 	private void DeathMenu() {
 		BeginPage(200,200);
 		GUI.skin.label.fontSize = 28;
@@ -61,14 +61,14 @@ public class menuDeath : MonoBehaviour {
 			}
 		}
 		if (GUILayout.Button ("Exit to Main Menu")) {
-			// call exit to main menu function
+			Application.LoadLevel ("MainMenu");
 		}
 		if (GUILayout.Button ("Exit to Desktop")) {
-			// call exit to desktop function
+			Application.Quit ();
 		}
 		GUILayout.EndArea();
 	}
-
+	
 	void StartDeath() {
 		isDead = true;
 		AudioListener.pause = true;
@@ -77,7 +77,7 @@ public class menuDeath : MonoBehaviour {
 		GetComponent<menuPause> ().enabled = false;
 		currentPage = Page.Main;
 	}
-
+	
 	void EndDeath() {
 		isDead = false;
 		AudioListener.pause = false;
