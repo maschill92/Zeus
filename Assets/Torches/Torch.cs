@@ -19,7 +19,7 @@ public class Torch : Activatable {
 		//print (row +  ", " + column);
 		lights = gameObject.GetComponentsInChildren<Light>();
 		flames = gameObject.GetComponentInChildren<ParticleSystem>();
-		if ((row == 0 || row == 2) && (column == 0 || column == 2))
+		if ((row == 0 || row == 2) || (column == 0 || column == 2))
 		{
 			lights[0].enabled = false;
 			lights[1].enabled = false;
