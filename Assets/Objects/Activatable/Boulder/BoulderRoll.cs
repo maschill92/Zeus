@@ -23,4 +23,12 @@ public class BoulderRoll : Activatable {
 			rigidbody.angularVelocity = this.angularVelocity;
 		}
 	}
+
+	void OnCollisionEnter(Collision other)
+	{
+		if(other.gameObject.tag == "Player")
+		{
+			print ("kill the player! the boulder crushed him!");
+		}
+	}
 }
