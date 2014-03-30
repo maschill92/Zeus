@@ -4,12 +4,13 @@ using System.Collections;
 public class Lever : Interactable {
 
 	public Activatable[] thingsToActivate;
-	private bool isOn = false;
 	public bool isOneTimeTrigger = false;
+	private bool isOn = false;
+	public Material offMat;
+	public Material onMat;
 
 	public override void Interact(Transform interactor)
 	{
-		print ("lever interact");
 		Toggle ();
 	}
 
@@ -22,7 +23,7 @@ public class Lever : Interactable {
 				thingsToActivate[i].Activate();
 			}
 			isOn = true;
-			// ANIMATE NOW
+			renderer.material = new Material(onMat);
 		}
 		// only allow deactivation if the lever allows itself to be toggled indefinitely
 		else if (!isOneTimeTrigger)
@@ -32,7 +33,7 @@ public class Lever : Interactable {
 				thingsToActivate[i].Deactivate();
 			}
 			isOn = false;
-			// ANIMATE NOW
+			renderer.material = new Material(offMat);
 		}
 	}
 }

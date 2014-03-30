@@ -23,4 +23,13 @@ public class Manager : MonoBehaviour
 			}
 		}
 	}
+
+	void OnControllerColliderHit(ControllerColliderHit hit)
+	{
+		if (hit.gameObject.tag.Equals("CollisionKill"))
+		{
+			print ("kill me! I collided with a collisionKill object");
+			//Kill()
+		}
+	}
 }
