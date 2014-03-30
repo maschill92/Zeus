@@ -28,7 +28,7 @@ public class ArrowTrap : Activatable {
 	{
 		if(other.tag == "Player" && arrowParticles != null && arrowParticles.isPlaying)
 		{
-			print ("Kill player!");
+			print ("Kill player because of arrowtrap!");
 		}
 	}
 }

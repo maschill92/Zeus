@@ -5,16 +5,9 @@ public class menuPause : MonoBehaviour
 {
 	private float savedTimeScale;
 
-	public string[] credits = { // change in future
-		"A Game Created By:",
-		"Ben Carpenter",
-		"Randall Howatt",
-		"Alex Lewis",
-		"Michael Schilling"} ;
-
 	private MouseLook playerCamera;
 	private	MouseLook mainCamera;
-
+	
 	private Texture mouseImage;
 	private Texture wImage;
 	private Texture aImage;
@@ -23,13 +16,13 @@ public class menuPause : MonoBehaviour
 	private Texture eImage;
 	private Texture spaceImage;
 	private Texture shiftImage;
-
+	
 	public enum Page {
-		None, Main, Controls, Credits
+		None, Main, Controls
 	}
 	
 	private Page currentPage;
-
+	
 	void Start() {
 		Time.timeScale = 1;
 		playerCamera = GameObject.Find ("Player").GetComponent<MouseLook>();
@@ -46,37 +39,29 @@ public class menuPause : MonoBehaviour
 		spaceImage = Resources.Load ("SpaceKey") as Texture;
 		shiftImage = Resources.Load ("ShiftKey") as Texture;
 	}
-
+	
 	void LateUpdate () {
 		if (Input.GetKeyDown("escape") || Input.GetKeyDown ("return")) {
 			switch (currentPage) {
-				case Page.None: 
-					PauseGame(true); 
-					break;
-				default: 
-					currentPage = Page.Main;
-					break;
+			case Page.None: 
+				PauseGame(true); 
+				break;
+			default: 
+				currentPage = Page.Main;
+				break;
 			}
 		}
 	}
 	
 	void OnGUI () {
 		GUI.color = Color.white;
+		GUI.skin.label.fontSize = 12;
 		if (IsGamePaused()) {
 			switch (currentPage) {
 				case Page.Main: MainPauseMenu(); break;
 				case Page.Controls: ShowControls (); break;
-				case Page.Credits: ShowCredits(); break;
 			}
 		}   
-	}
-
-	void ShowCredits() {
-		BeginPage(300,300);
-		foreach(string credit in credits) {
-			GUILayout.Label(credit);
-		}
-		EndPage();
 	}
 	
 	void ShowBackButton() {
@@ -84,44 +69,44 @@ public class menuPause : MonoBehaviour
 			currentPage = Page.Main;
 		}
 	}
-
+	
 	void ShowControls() {
 		BeginPage (200, 600);
 		GUILayout.BeginHorizontal ();
-			GUILayout.Label (mouseImage);
-			GUILayout.Label ("Camera");
+		GUILayout.Label (mouseImage);
+		GUILayout.Label ("Camera");
 		GUILayout.EndHorizontal ();
 		GUILayout.BeginHorizontal ();
-			GUILayout.Label (wImage);
-			GUILayout.Label ("Move Forward");
+		GUILayout.Label (wImage);
+		GUILayout.Label ("Move Forward");
 		GUILayout.EndHorizontal ();
 		GUILayout.BeginHorizontal ();
-			GUILayout.Label (aImage);
-			GUILayout.Label ("Move Left");
+		GUILayout.Label (aImage);
+		GUILayout.Label ("Move Left");
 		GUILayout.EndHorizontal ();
 		GUILayout.BeginHorizontal ();
-			GUILayout.Label (sImage);
-			GUILayout.Label ("Move Backward");
+		GUILayout.Label (sImage);
+		GUILayout.Label ("Move Backward");
 		GUILayout.EndHorizontal ();
 		GUILayout.BeginHorizontal ();
-			GUILayout.Label (dImage);
-			GUILayout.Label ("Move Right");
+		GUILayout.Label (dImage);
+		GUILayout.Label ("Move Right");
 		GUILayout.EndHorizontal ();
 		GUILayout.BeginHorizontal ();
-			GUILayout.Label (eImage);
-			GUILayout.Label ("Interact");
+		GUILayout.Label (eImage);
+		GUILayout.Label ("Interact");
 		GUILayout.EndHorizontal ();
 		GUILayout.BeginHorizontal ();
-			GUILayout.Label (spaceImage);
-			GUILayout.Label ("Jump");
+		GUILayout.Label (spaceImage);
+		GUILayout.Label ("Jump");
 		GUILayout.EndHorizontal ();
 		GUILayout.BeginHorizontal ();
-			GUILayout.Label (shiftImage);
-			GUILayout.Label ("Sprint");
+		GUILayout.Label (shiftImage);
+		GUILayout.Label ("Sprint");
 		GUILayout.EndHorizontal ();
 		EndPage ();
 	}
-		
+	
 	void BeginPage(int width, int height) {
 		GUILayout.BeginArea( new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height));
 	}
@@ -132,7 +117,7 @@ public class menuPause : MonoBehaviour
 			ShowBackButton();
 		}
 	}
-
+	
 	void MainPauseMenu() {
 		BeginPage(200,200);
 		if (GUILayout.Button ("Resume")) {
@@ -141,18 +126,15 @@ public class menuPause : MonoBehaviour
 		if (GUILayout.Button ("Controls")) {
 			currentPage = Page.Controls;
 		}
-		if (GUILayout.Button ("Credits")) {
-			currentPage = Page.Credits;
-		}
 		if (GUILayout.Button ("Exit to Main Menu")) {
-			// call exit to main menu function
+			Application.LoadLevel ("MainMenu");
 		}
 		if (GUILayout.Button ("Exit to Desktop")) {
-			// call exit to desktop function
+			Application.Quit ();
 		}
 		EndPage();
 	}
-
+	
 	public void PauseGame(bool check) {
 		savedTimeScale = Time.timeScale;
 		Time.timeScale = 0;
