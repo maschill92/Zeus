@@ -18,15 +18,15 @@ public class menuMain : MonoBehaviour {
 	private Texture eImage;
 	private Texture spaceImage;
 	private Texture shiftImage;
+	private Texture blackScreen;
 
 	public enum Page {
-		None, Main, Credits, Controls
+		Main, Credits, Controls
 	}
 	
 	private Page currentPage;
 
 	void Start () {
-		currentPage = Page.Main;
 		mouseImage = Resources.Load ("MouseKey") as Texture;
 		wImage = Resources.Load ("WKey") as Texture;
 		aImage = Resources.Load ("AKey") as Texture;
@@ -35,20 +35,28 @@ public class menuMain : MonoBehaviour {
 		eImage = Resources.Load ("EKey") as Texture;
 		spaceImage = Resources.Load ("SpaceKey") as Texture;
 		shiftImage = Resources.Load ("ShiftKey") as Texture;
+		blackScreen = Resources.Load ("BlackScreen") as Texture;
 	}
 
 
 	void OnGUI () {
-		GUI.color = Color.white;
-		GUI.skin.label.fontSize = 12;
+		GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), blackScreen); // put art still in when ready
 		switch (currentPage) {
-			case Page.Main: MainMenu(); break;
-			case Page.Credits: ShowCredits(); break;
-			case Page.Controls: ShowControls(); break;
+			case Page.Main:
+				MainMenu();
+				break;
+			case Page.Credits:
+				ShowCredits();
+				break;
+			case Page.Controls:
+				ShowControls();
+				break;
 		} 
 	}
 
 	void ShowCredits() {
+		GUI.color = Color.white;
+		GUI.skin.label.fontSize = 12;
 		BeginPage(300,300);
 		foreach(string credit in credits) {
 			GUILayout.Label(credit);
@@ -70,6 +78,8 @@ public class menuMain : MonoBehaviour {
 	}
 
 	void ShowControls() {
+		GUI.color = Color.white;
+		GUI.skin.label.fontSize = 14;
 		BeginPage (200, 600);
 		GUILayout.BeginHorizontal ();
 		GUILayout.Label (mouseImage);
@@ -110,7 +120,6 @@ public class menuMain : MonoBehaviour {
 		BeginPage(200,200);
 		if (GUILayout.Button ("Start Game")) {
 			// play intro movie
-			currentPage = Page.None;
 			Application.LoadLevel ("Level1"); 
 		}
 		if (GUILayout.Button ("Controls")) {

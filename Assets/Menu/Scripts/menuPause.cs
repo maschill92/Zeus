@@ -16,6 +16,7 @@ public class menuPause : MonoBehaviour
 	private Texture eImage;
 	private Texture spaceImage;
 	private Texture shiftImage;
+	private Texture blackScreen;
 	
 	public enum Page {
 		None, Main, Controls
@@ -38,6 +39,7 @@ public class menuPause : MonoBehaviour
 		eImage = Resources.Load ("EKey") as Texture;
 		spaceImage = Resources.Load ("SpaceKey") as Texture;
 		shiftImage = Resources.Load ("ShiftKey") as Texture;
+		blackScreen = Resources.Load ("BlackScreen") as Texture;
 	}
 	
 	void LateUpdate () {
@@ -54,12 +56,16 @@ public class menuPause : MonoBehaviour
 	}
 	
 	void OnGUI () {
-		GUI.color = Color.white;
-		GUI.skin.label.fontSize = 12;
 		if (IsGamePaused()) {
+			GUI.color = new Color32(255, 255, 255, 200);
+			GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), blackScreen);
 			switch (currentPage) {
-				case Page.Main: MainPauseMenu(); break;
-				case Page.Controls: ShowControls (); break;
+				case Page.Main:
+					MainPauseMenu();
+					break;
+				case Page.Controls:
+					ShowControls ();
+					break;
 			}
 		}   
 	}
@@ -71,6 +77,8 @@ public class menuPause : MonoBehaviour
 	}
 	
 	void ShowControls() {
+		GUI.color = Color.white;
+		GUI.skin.label.fontSize = 14;
 		BeginPage (200, 600);
 		GUILayout.BeginHorizontal ();
 		GUILayout.Label (mouseImage);
@@ -119,6 +127,7 @@ public class menuPause : MonoBehaviour
 	}
 	
 	void MainPauseMenu() {
+		GUI.color = Color.white;
 		BeginPage(200,200);
 		if (GUILayout.Button ("Resume")) {
 			UnPauseGame(true);

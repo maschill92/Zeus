@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class menuDeath : MonoBehaviour {
 	
 	private bool isDead;
-	
+
+	private Texture blackScreen;
+
 	public enum Page {
 		None, Main
 	}
@@ -13,6 +15,7 @@ public class menuDeath : MonoBehaviour {
 	
 	void Start () {
 		isDead = false;
+		blackScreen = Resources.Load ("BlackScreen") as Texture;
 	}
 	
 	void LateUpdate () {
@@ -29,10 +32,14 @@ public class menuDeath : MonoBehaviour {
 	}
 	
 	void OnGUI () {
-		GUI.color = Color.white;
+
 		if (isDead) {
 			switch (currentPage) {
-			case Page.Main: DeathMenu(); break;
+			case Page.Main:
+				GUI.color = new Color32(255, 255, 255, 200);
+				GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), blackScreen, ScaleMode.StretchToFill, true);
+				DeathMenu();
+				break;
 			}
 		}   
 	}
@@ -47,7 +54,8 @@ public class menuDeath : MonoBehaviour {
 	
 	private void DeathMenu() {
 		BeginPage(200,200);
-		GUI.skin.label.fontSize = 28;
+		GUI.skin.label.fontSize = 29;
+		GUI.color = Color.white;
 		int trysRemaining = GetComponent<guiHealth> ().Get ();
 		string restartText;
 		if (trysRemaining != 1)
