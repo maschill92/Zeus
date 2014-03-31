@@ -14,7 +14,7 @@ public class Lever : Interactable {
 		Toggle ();
 	}
 
-	public void Toggle()
+	public virtual void Toggle()
 	{
 		if (!isOn)
 		{

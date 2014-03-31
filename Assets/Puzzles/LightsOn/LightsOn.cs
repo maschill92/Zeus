@@ -5,31 +5,57 @@ public class LightsOn : MonoBehaviour {
 
 	public MultidimensionalTorch[] torchArray = new MultidimensionalTorch[3];
 
-	public void TorchToggled(int row, int col)
+	public void TorchToggled(int x, int y)
 	{
-		print ("toggle " + row + ", " + col);
-		/*
-		if (row > 0)
+		print ("toggle " + x + ", " + y);
+
+		if (x > 0)
 		{
-			torchArray[row-1][col].Toggle();
+			print ("1");
+			print("torchArray["+(x-1)+"]["+y+"].Toggle(); " + torchArray[(x-1)][y].name);
+			torchArray[(x-1)][y].Toggle();
 		}
 
-		if (col > 0)
+		if (y > 0)
 		{
-			torchArray[row][col-1].Toggle();
+			print ("2");
+			print("torchArray["+x+"]["+(y-1)+"].Toggle(); " + torchArray[x][(y-1)].name);
+			torchArray[x][(y-1)].Toggle();
 		}
 
-		if(col < 2)
+		if(y < 2)
 		{
-			torchArray[row][col+1].Toggle();
+			print ("3");
+			print("torchArray["+x+"]["+(y+1)+"].Toggle(); " + torchArray[x][(y+1)].name);
+			torchArray[x][(y+1)].Toggle();
 		}
 
-		if (row < 2)
+		if (x < 2)
 		{
-			torchArray[row+1][col].Toggle();
+			print ("4");
+			print("torchArray["+(x+1)+"]["+y+"].Toggle(); " + torchArray[(x+1)][y].name);
+			torchArray[(x+1)][y].Toggle();
 		}
-		*/
-		// Check for success
 
+		if (CheckForSuccess())
+		{
+			print ("WOOOO!!!!");
+		}
+
+	}
+
+	bool CheckForSuccess()
+	{
+		for (int i = 0; i < torchArray.Length; i++)
+		{
+			for (int j = 0; j < torchArray[i].Length; j++)
+			{
+				if (!torchArray[i][j].Active)
+				{
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }
