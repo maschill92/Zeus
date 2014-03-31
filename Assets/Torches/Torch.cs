@@ -16,7 +16,6 @@ public class Torch : Activatable {
 
 	void Awake ()
 	{
-		//print (row +  ", " + column);
 		lights = gameObject.GetComponentsInChildren<Light>();
 		flames = gameObject.GetComponentInChildren<ParticleSystem>();
 		if ((row == 0 || row == 2) || (column == 0 || column == 2))
@@ -56,23 +55,19 @@ public class Torch : Activatable {
 	{
 		if (isActive)
 		{
-			Deactivate();
+			isActive = false;
+			lights[0].enabled = false;
+			lights[1].enabled = false;
+			lights[2].enabled = false;
+			flames.Pause();
+			flames.Clear();
 		}
 		else 
 		{
-			Activate();
-		}
-	}
-
-	void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.J))
-		{
-			Activate();
-		}
-		else if (Input.GetKeyDown(KeyCode.K))
-		{
-			Deactivate();
+			isActive = true;
+			lights[0].enabled = true;
+			lights[1].enabled = true;
+			flames.Play();
 		}
 	}
 }
