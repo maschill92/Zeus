@@ -1,42 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PressureSwitch : MonoBehaviour 
+public class StairPuzzleSwitch : MonoBehaviour 
 {
-	public Activatable[] thingsToActivate;
-	public bool isOneTimeTrigger = false; 	// true means that the switch can be triggered on, then off, then on...
-	private bool isTriggered = false; 		// is the switch currently triggered?
-	private short triggeringObjectCount;	// allows a player to walk on a switch while a rock is on it without 'UnTriggering'
+    [HideInInspector]
+	public bool isTriggered = false; 		// is the switch currently triggered?
+	private short triggeringObjectCount = 0;	// allows a player to walk on a switch while a rock is on it without 'UnTriggering'
 
 	private Vector3 targetLocation;
 	private Vector3 originalLoc;
 	public float heightToLower = 0.05f;
-	public float slideSpeed = 2f;
+	public float slideSpeed = 1f;
 
 	private void Trigger()
 	{
 		triggeringObjectCount++;
 		if (!isTriggered)
-		{
-			for(int i = 0; i < thingsToActivate.Length; i++)
-			{
-				thingsToActivate[i].Activate();
-			}
-			targetLocation.y = originalLoc.y - heightToLower;
+        {
+            targetLocation.y = originalLoc.y - heightToLower;
 		}
 		isTriggered = true;
 	}
 
 	private void UnTrigger()
-	{
+    {
 		triggeringObjectCount--;
 		// UnTrigger... great word.
-		if (!isOneTimeTrigger && triggeringObjectCount <= 0)
+		if (triggeringObjectCount <= 0)
 		{
-			for (int i = 0; i < thingsToActivate.Length; i++)
-			{
-				thingsToActivate[i].Deactivate();
-			}
 			isTriggered = false;
 			targetLocation.y = originalLoc.y;
 		}

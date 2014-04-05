@@ -12,7 +12,7 @@ public class ArrowTrap : Activatable {
 
 	public override void Activate ()
 	{
-		if (arrowParticles != null)
+		if (arrowParticles != null && !arrowParticles.isPlaying)
 		{
 			arrowParticles.Play();
 			Destroy(arrowParticles, arrowParticles.duration);
