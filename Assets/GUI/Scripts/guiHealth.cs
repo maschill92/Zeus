@@ -21,16 +21,32 @@ public class guiHealth : MonoBehaviour {
 	void OnGUI () {
 		GUI.skin.label.fontSize = 16;
 		GUI.color = Color.white;
-		GUI.Label (new Rect((Screen.width / 12), (Screen.height / 20), 64, 64), displayHealth);
+		DrawOutline (new Rect ((Screen.width / 12), (Screen.height / 20), 64, 64), displayHealth);
 		GUI.Label (new Rect ((Screen.width / 50), (Screen.height / 50), 64, 64), healthImage);
 	}
 
+	void DrawOutline(Rect position, string text) {
+		GUI.color = Color.black;
+		position.x--;
+		GUI.Label(position, text);
+		position.x += 2;
+		GUI.Label(position, text);
+		position.x--;
+		position.y--;
+		GUI.Label(position, text);
+		position.y += 2;
+		GUI.Label(position, text);
+		GUI.color = Color.white;
+		position.y--;
+		GUI.Label(position, text); // regular text
+	}
+
 	public void Increase() {
-		currentHealth += 1;
+		currentHealth++;
 	}
 
 	public void Decrease() {
-		currentHealth -= 1;
+		currentHealth--;
 	}
 
 	public void Set(int value) {

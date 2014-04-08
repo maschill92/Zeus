@@ -9,10 +9,7 @@ public class menuPause : MonoBehaviour
 	private	MouseLook mainCamera;
 	
 	private Texture mouseImage;
-	private Texture wImage;
-	private Texture aImage;
-	private Texture sImage;
-	private Texture dImage;
+	private Texture wasdImage;
 	private Texture eImage;
 	private Texture spaceImage;
 	private Texture shiftImage;
@@ -32,10 +29,7 @@ public class menuPause : MonoBehaviour
 		GetComponent<guiCrosshair> ().enabled = true;
 		AudioListener.pause = false;
 		mouseImage = Resources.Load ("MouseKey") as Texture;
-		wImage = Resources.Load ("WKey") as Texture;
-		aImage = Resources.Load ("AKey") as Texture;
-		sImage = Resources.Load ("SKey") as Texture;
-		dImage = Resources.Load ("DKey") as Texture;
+		wasdImage = Resources.Load ("WASDKey") as Texture;
 		eImage = Resources.Load ("EKey") as Texture;
 		spaceImage = Resources.Load ("SpaceKey") as Texture;
 		shiftImage = Resources.Load ("ShiftKey") as Texture;
@@ -57,7 +51,7 @@ public class menuPause : MonoBehaviour
 	
 	void OnGUI () {
 		if (IsGamePaused()) {
-			GUI.color = new Color32(255, 255, 255, 200);
+			GUI.color = new Color32(255, 255, 255, 175);
 			GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), blackScreen);
 			switch (currentPage) {
 				case Page.Main:
@@ -71,48 +65,34 @@ public class menuPause : MonoBehaviour
 	}
 	
 	void ShowBackButton() {
-		if (GUI.Button(new Rect((Screen.width / 2), ((Screen.height / 2) + (Screen.height / 3)), 75, 20), "Back")) {
+		if (GUI.Button(new Rect((Screen.width / 2) - 30, ((Screen.height / 2) + (Screen.height / 3)), 75, 20), "Back")) {
 			currentPage = Page.Main;
 		}
 	}
 	
 	void ShowControls() {
 		GUI.color = Color.white;
-		GUI.skin.label.fontSize = 14;
-		BeginPage (200, 600);
+		GUI.skin.label.fontSize = 30;
+		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
+		BeginPage (400, 400);
 		GUILayout.BeginHorizontal ();
+		GUILayout.BeginVertical ();
 		GUILayout.Label (mouseImage);
-		GUILayout.Label ("Camera");
-		GUILayout.EndHorizontal ();
-		GUILayout.BeginHorizontal ();
-		GUILayout.Label (wImage);
-		GUILayout.Label ("Move Forward");
-		GUILayout.EndHorizontal ();
-		GUILayout.BeginHorizontal ();
-		GUILayout.Label (aImage);
-		GUILayout.Label ("Move Left");
-		GUILayout.EndHorizontal ();
-		GUILayout.BeginHorizontal ();
-		GUILayout.Label (sImage);
-		GUILayout.Label ("Move Backward");
-		GUILayout.EndHorizontal ();
-		GUILayout.BeginHorizontal ();
-		GUILayout.Label (dImage);
-		GUILayout.Label ("Move Right");
-		GUILayout.EndHorizontal ();
-		GUILayout.BeginHorizontal ();
+		GUILayout.Label (wasdImage);
 		GUILayout.Label (eImage);
-		GUILayout.Label ("Interact");
-		GUILayout.EndHorizontal ();
-		GUILayout.BeginHorizontal ();
 		GUILayout.Label (spaceImage);
-		GUILayout.Label ("Jump");
-		GUILayout.EndHorizontal ();
-		GUILayout.BeginHorizontal ();
 		GUILayout.Label (shiftImage);
-		GUILayout.Label ("Sprint");
+		GUILayout.EndVertical ();
+		GUILayout.BeginVertical ();
+		GUILayout.Label ("Camera\n");
+		GUILayout.Label ("Movement\n");
+		GUILayout.Label ("Interact\n");
+		GUILayout.Label ("Jump\n");
+		GUILayout.Label ("Sprint\n");
+		GUILayout.EndVertical ();
 		GUILayout.EndHorizontal ();
 		EndPage ();
+		GUI.skin.label.alignment = TextAnchor.UpperLeft;
 	}
 	
 	void BeginPage(int width, int height) {

@@ -36,7 +36,7 @@ public class menuDeath : MonoBehaviour {
 		if (isDead) {
 			switch (currentPage) {
 			case Page.Main:
-				GUI.color = new Color32(255, 255, 255, 200);
+				GUI.color = new Color32(255, 255, 255, 175);
 				GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), blackScreen, ScaleMode.StretchToFill, true);
 				DeathMenu();
 				break;
@@ -54,7 +54,7 @@ public class menuDeath : MonoBehaviour {
 	
 	private void DeathMenu() {
 		BeginPage(200,200);
-		GUI.skin.label.fontSize = 29;
+		GUI.skin.label.fontSize = 32;
 		GUI.color = Color.white;
 		int trysRemaining = GetComponent<guiHealth> ().Get ();
 		string restartText;
@@ -62,7 +62,7 @@ public class menuDeath : MonoBehaviour {
 			restartText = ("Restart (" + trysRemaining.ToString() + " lives remaining)");
 		else
 			restartText = ("Restart (" + trysRemaining.ToString() + " life remaining)");
-		GUILayout.Label ("You Have Died\n");
+		GUILayout.Label ("You Are Dead\n");
 		if (trysRemaining > 0) { // only display if current lives are greater than zero
 			if (GUILayout.Button (restartText)) {
 				EndDeath ();

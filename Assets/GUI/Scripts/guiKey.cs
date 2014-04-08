@@ -21,12 +21,28 @@ public class guiKey : MonoBehaviour {
 	void OnGUI () {
 		GUI.skin.label.fontSize = 16;
 		GUI.color = Color.white;
-		GUI.Label (new Rect((Screen.width / 12), (Screen.height / 8), 64, 64), displayKeys);
+		DrawOutline (new Rect((Screen.width / 12), (Screen.height / 8), 64, 64), displayKeys);
 		GUI.Label (new Rect ((Screen.width / 50), (Screen.height / 10), 64, 64), keyImage);
 	}
 
+	void DrawOutline(Rect position, string text) {
+		GUI.color = Color.black;
+		position.x--;
+		GUI.Label(position, text);
+		position.x += 2;
+		GUI.Label(position, text);
+		position.x--;
+		position.y--;
+		GUI.Label(position, text);
+		position.y += 2;
+		GUI.Label(position, text);
+		GUI.color = Color.white;
+		position.y--;
+		GUI.Label(position, text); // regular text
+	}
+
 	public void Increase() {
-		currentKeys += 1;
+		currentKeys++;
 	}
 
 	public void Decrease(int value) {

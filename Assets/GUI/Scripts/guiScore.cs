@@ -39,7 +39,23 @@ public class guiScore : MonoBehaviour {
 	void OnGUI () {
 		GUI.skin.label.fontSize = 20;
 		GUI.color = Color.white;
-		GUI.Label (new Rect ((Screen.width - (Screen.width / 6)), (Screen.height / 20), 200, 64), displayScore);
+		DrawOutline (new Rect ((Screen.width - (Screen.width / 6)), (Screen.height / 20), 200, 64), displayScore);
+	}
+
+	void DrawOutline(Rect position, string text) {
+		GUI.color = Color.black;
+		position.x--;
+		GUI.Label(position, text);
+		position.x += 2;
+		GUI.Label(position, text);
+		position.x--;
+		position.y--;
+		GUI.Label(position, text);
+		position.y += 2;
+		GUI.Label(position, text);
+		GUI.color = Color.white;
+		position.y--;
+		GUI.Label(position, text); // regular text
 	}
 
 	public void Increase(int value) {
@@ -48,6 +64,10 @@ public class guiScore : MonoBehaviour {
 
 	public void Set(int value) {
 		totalScore = value;
+	}
+
+	public int Get() {
+		return totalScore;
 	}
 	
 	public void Reset() {

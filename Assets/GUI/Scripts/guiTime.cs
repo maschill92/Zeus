@@ -3,8 +3,8 @@ using System.Collections;
 
 public class guiTime : MonoBehaviour {
 
-	private float currentSecond;
-	private float currentMinute;
+	private int currentSecond;
+	private int currentMinute;
 	private float lastUpdate;
 	private string displayTime;
 
@@ -17,12 +17,12 @@ public class guiTime : MonoBehaviour {
 	
 	void Update() {
 		if ((Time.time - lastUpdate) > 1f) { // update every second
-			currentSecond += 1;
+			currentSecond++;
 			lastUpdate = Time.time;
 		}
 		if (currentSecond == 60) {
 			currentSecond = 0;
-			currentMinute += 1;
+			currentMinute++;
 		}
 		if (currentMinute < 10 && currentSecond < 10) { // case 1: 0m:0s
 			displayTime = "0" + currentMinute.ToString () + ":0" + currentSecond.ToString ();
@@ -42,12 +42,36 @@ public class guiTime : MonoBehaviour {
 	void OnGUI () {
 		GUI.skin.label.fontSize = 20;
 		GUI.color = Color.white;
-		GUI.Label (new Rect ((Screen.width - (Screen.width / 6)), (Screen.height / 8), 200, 64), displayTime);
+		DrawOutline (new Rect ((Screen.width - (Screen.width / 6)), (Screen.height / 8), 200, 64), displayTime);
+	}
+
+	void DrawOutline(Rect position, string text) {
+		GUI.color = Color.black;
+		position.x--;
+		GUI.Label(position, text);
+		position.x += 2;
+		GUI.Label(position, text);
+		position.x--;
+		position.y--;
+		GUI.Label(position, text);
+		position.y += 2;
+		GUI.Label(position, text);
+		GUI.color = Color.white;
+		position.y--;
+		GUI.Label(position, text); // regular text
 	}
 
 	public void Set(int minute, int second) {
 		currentMinute = minute;
 		currentSecond = second;
+	}
+
+	public int GetMinute() {
+		return currentMinute;
+	}
+
+	public int GetSecond() {
+		return currentSecond;
 	}
 	
 	public void Reset() {
