@@ -96,7 +96,7 @@ public class menuPause : MonoBehaviour
 	}
 	
 	void BeginPage(int width, int height) {
-		GUILayout.BeginArea( new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height));
+		GUILayout.BeginArea( new Rect(((Screen.width - width) / 2), ((Screen.height - height) / 2), width, height));
 	}
 	
 	void EndPage() {
@@ -132,6 +132,7 @@ public class menuPause : MonoBehaviour
 		mainCamera.enabled = false;
 		GetComponent<HeadBob> ().enabled = false;
 		GetComponent<guiCrosshair> ().enabled = false;
+		GetComponent<guiPrompt> ().enabled = false;
 		if (check) { // Death flag check. If false it does not display the Pause Menu and only pauses the game.
 			currentPage = Page.Main;
 		}
@@ -145,6 +146,7 @@ public class menuPause : MonoBehaviour
 		mainCamera.enabled = true;
 		GetComponent<HeadBob> ().enabled = true;
 		GetComponent<guiCrosshair> ().enabled = true;
+		GetComponent<guiPrompt> ().enabled = true;
 		if (check) {
 			currentPage = Page.None;
 		}

@@ -32,7 +32,6 @@ public class menuDeath : MonoBehaviour {
 	}
 	
 	void OnGUI () {
-
 		if (isDead) {
 			switch (currentPage) {
 			case Page.Main:
@@ -49,7 +48,7 @@ public class menuDeath : MonoBehaviour {
 	}
 	
 	void BeginPage(int width, int height) {
-		GUILayout.BeginArea( new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height));
+		GUILayout.BeginArea( new Rect(((Screen.width - width) / 2), ((Screen.height - height) / 2), width, height));
 	}
 	
 	private void DeathMenu() {
@@ -89,6 +88,7 @@ public class menuDeath : MonoBehaviour {
 	void EndDeath() {
 		isDead = false;
 		AudioListener.pause = false;
+		GetComponent<guiPrompt> ().Reset ();
 		GetComponent<menuPause> ().enabled = true;
 		GetComponent<menuPause> ().UnPauseGame (false);
 		currentPage = Page.None;

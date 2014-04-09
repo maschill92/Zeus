@@ -4,21 +4,21 @@ using System.Collections;
 public class menuMain : MonoBehaviour {
 
 	public string[] credits = { // change in future
-		"University of North Dakota:",
+		"University of North Dakota\n",
 		"Instructor:",
-		"\tRon Marsh",
-		"A Game Created By:",
+		"\tDr. Ron Marsh\n",
+		"A Game Created By:\n",
 		"Ben Carpenter:",
 		"\tLevel 2 Design",
-		"\tObject Art",
-		"\tMusic",
+		"\tObject Art/Animation",
+		"\tMusic\n",
 		"Randall Howatt:",
 		"\tLevel 1 Design",
 		"\tInterface/Menu Design",
-		"\tSound Effects",
+		"\tSound Effects\n",
 		"Alex Lewis:",
 		"\tEnvironment Design",
-		"\tObject Art",
+		"\tObject Art/Animation\n",
 		"Michael Schilling:",
 		"\tCharacter Controls",
 		"\tObject Programming",
@@ -30,6 +30,8 @@ public class menuMain : MonoBehaviour {
 	private Texture spaceImage;
 	private Texture shiftImage;
 	private Texture blackScreen;
+
+	Vector2 scrollPosition;
 
 	public enum Page {
 		Main, Levels, Credits, Controls
@@ -67,11 +69,13 @@ public class menuMain : MonoBehaviour {
 
 	void ShowCredits() {
 		GUI.color = Color.white;
-		GUI.skin.label.fontSize = 12;
-		BeginPage(600,600);
+		GUI.skin.label.fontSize = 18;
+		BeginPage(400,400);
+		scrollPosition = GUILayout.BeginScrollView (scrollPosition, GUILayout.Width (400), GUILayout.Height (400));
 		foreach(string credit in credits) {
 			GUILayout.Label(credit);
 		}
+		GUILayout.EndScrollView ();
 		EndPage();
 	}
 
@@ -95,7 +99,7 @@ public class menuMain : MonoBehaviour {
 	}
 
 	void BeginPage(int width, int height) {
-		GUILayout.BeginArea( new Rect((Screen.width - width) / 2, (Screen.height - height) / 2, width, height));
+		GUILayout.BeginArea( new Rect(((Screen.width - width) / 2), ((Screen.height - height) / 2), width, height));
 	}
 
 	void EndPage() {

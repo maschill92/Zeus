@@ -16,7 +16,7 @@ public class guiTime : MonoBehaviour {
 	}
 	
 	void Update() {
-		if ((Time.time - lastUpdate) > 1f) { // update every second
+		if ((Time.time - lastUpdate) > 1.0f) { // update every second
 			currentSecond++;
 			lastUpdate = Time.time;
 		}
