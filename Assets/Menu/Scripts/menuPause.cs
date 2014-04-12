@@ -84,11 +84,11 @@ public class menuPause : MonoBehaviour
 		GUILayout.Label (shiftImage);
 		GUILayout.EndVertical ();
 		GUILayout.BeginVertical ();
-		GUILayout.Label ("Camera\n");
-		GUILayout.Label ("Movement\n");
-		GUILayout.Label ("Interact\n");
-		GUILayout.Label ("Jump\n");
-		GUILayout.Label ("Sprint\n");
+		GUILayout.Label ("Camera", GUILayout.Height (75));
+		GUILayout.Label ("Movement", GUILayout.Height (75));
+		GUILayout.Label ("Interact", GUILayout.Height (55));
+		GUILayout.Label ("Jump", GUILayout.Height (75));
+		GUILayout.Label ("Sprint", GUILayout.Height (75));
 		GUILayout.EndVertical ();
 		GUILayout.EndHorizontal ();
 		EndPage ();

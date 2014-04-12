@@ -7,6 +7,8 @@ public class menuMain : MonoBehaviour {
 		"University of North Dakota\n",
 		"Instructor:",
 		"\tDr. Ron Marsh\n",
+		"Course:",
+		"\tComputer Science 448\n",
 		"A Game Created By:\n",
 		"Ben Carpenter:",
 		"\tLevel 2 Design",
@@ -47,7 +49,6 @@ public class menuMain : MonoBehaviour {
 		shiftImage = Resources.Load ("ShiftKey") as Texture;
 		blackScreen = Resources.Load ("BlackScreen") as Texture;
 	}
-
 
 	void OnGUI () {
 		GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), blackScreen); // put art still in when ready
@@ -93,7 +94,7 @@ public class menuMain : MonoBehaviour {
 		}
 		if (GUILayout.Button("Level 2")) {
 			// play transition
-			// load Level 2
+			Application.LoadLevel ("Level2");
 		}
 		EndPage ();
 	}
@@ -123,11 +124,11 @@ public class menuMain : MonoBehaviour {
 		GUILayout.Label (shiftImage);
 		GUILayout.EndVertical ();
 		GUILayout.BeginVertical ();
-		GUILayout.Label ("Camera\n");
-		GUILayout.Label ("Movement\n");
-		GUILayout.Label ("Interact\n");
-		GUILayout.Label ("Jump\n");
-		GUILayout.Label ("Sprint\n");
+		GUILayout.Label ("Camera", GUILayout.Height (75));
+		GUILayout.Label ("Movement", GUILayout.Height (75));
+		GUILayout.Label ("Interact", GUILayout.Height (55));
+		GUILayout.Label ("Jump", GUILayout.Height (75));
+		GUILayout.Label ("Sprint", GUILayout.Height (75));
 		GUILayout.EndVertical ();
 		GUILayout.EndHorizontal ();
 		EndPage ();
