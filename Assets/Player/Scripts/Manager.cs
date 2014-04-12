@@ -6,6 +6,7 @@ public class Manager : MonoBehaviour
 	private Camera playerCamera;
 	public float interactDistance = 1.25f;
 	public LayerMask layerMask;
+    public Checkpoint lastCheckpoint;
 
 	void Start()
 	{
@@ -23,4 +24,14 @@ public class Manager : MonoBehaviour
 			}
 		}
 	}
+    
+    public void Reset()
+    {
+        transform.position = lastCheckpoint.transform.position;
+    }
+
+    public void Kill()
+    {
+        FindObjectOfType<menuDeath>().killPlayer();
+    }
 }

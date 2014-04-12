@@ -81,7 +81,8 @@ public class menuDeath : MonoBehaviour {
 		AudioListener.pause = true;
 		GetComponent<guiHealth> ().Decrease ();
 		GetComponent<menuPause> ().PauseGame (false);
-		GetComponent<menuPause> ().enabled = false;
+        GetComponent<menuPause>().enabled = false;
+        FindObjectOfType<Manager>().Reset();
 		currentPage = Page.Main;
 	}
 	
