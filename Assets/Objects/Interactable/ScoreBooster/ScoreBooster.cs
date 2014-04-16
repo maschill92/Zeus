@@ -4,7 +4,7 @@ using System.Collections;
 public class ScoreBooster : Interactable {
 
 	private guiScore scoreKeeper;
-	public int value = 100;
+	public int value = 10000;
 
 	void Start()
 	{

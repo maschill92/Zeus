@@ -82,7 +82,6 @@ public class menuDeath : MonoBehaviour {
 		GetComponent<guiHealth> ().Decrease ();
 		GetComponent<menuPause> ().PauseGame (false);
         GetComponent<menuPause>().enabled = false;
-        FindObjectOfType<Manager>().Reset();
 		currentPage = Page.Main;
 	}
 	
@@ -93,5 +92,6 @@ public class menuDeath : MonoBehaviour {
 		GetComponent<menuPause> ().enabled = true;
 		GetComponent<menuPause> ().UnPauseGame (false);
 		currentPage = Page.None;
+		FindObjectOfType<Manager>().Reset();
 	}
 }

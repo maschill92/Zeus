@@ -11,11 +11,13 @@ public class HeadBob : MonoBehaviour
     public float sprintingBobAmount = 0.05f;
     public float minimumSpeedForBob = 0.5f;
     private CharacterMotor characterMotor;
+	private AudioClip footSteps;
 
 	void Start()
 	{
 		midpoint = this.transform.localPosition.y;
         characterMotor = this.transform.parent.GetComponent<CharacterMotor> ();
+		footSteps = (AudioClip)Resources.Load ("Sound/Footsteps/footSteps");
 	}
 
 	void Update ()
@@ -49,7 +51,7 @@ public class HeadBob : MonoBehaviour
 			{
 				if(characterMotor.movement.velocity.magnitude != 0.0f)
 				{
-					audio.Play ();
+					audio.PlayOneShot (footSteps, 0.25f);
 				}
 				timer -= Mathf.PI * 2;
 			}

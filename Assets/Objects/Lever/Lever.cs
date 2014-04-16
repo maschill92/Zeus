@@ -8,9 +8,11 @@ public class Lever : Interactable {
 	private bool isOn = false;
 	public Material offMat;
 	public Material onMat;
+	//private AudioClip lever;
 
 	public override void Interact(Transform interactor)
 	{
+		//leverSound = (AudioClip)Resources.Load ("Sound/Lever/lever");
 		Toggle ();
 	}
 
