@@ -8,11 +8,9 @@ public class Lever : Interactable {
 	private bool isOn = false;
 	public Material offMat;
 	public Material onMat;
-	//private AudioClip lever;
 
 	public override void Interact(Transform interactor)
 	{
-		//leverSound = (AudioClip)Resources.Load ("Sound/Lever/lever");
 		Toggle ();
 	}
 
@@ -26,6 +24,7 @@ public class Lever : Interactable {
 			}
 			isOn = true;
 			renderer.material = new Material(onMat);
+			audio.Play();
 		}
 		// only allow deactivation if the lever allows itself to be toggled indefinitely
 		else if (!isOneTimeTrigger)
@@ -36,6 +35,7 @@ public class Lever : Interactable {
 			}
 			isOn = false;
 			renderer.material = new Material(offMat);
+			audio.Play();
 		}
 	}
 }

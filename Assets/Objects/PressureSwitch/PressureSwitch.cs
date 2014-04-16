@@ -23,6 +23,7 @@ public class PressureSwitch : MonoBehaviour
 				thingsToActivate[i].Activate();
 			}
 			targetLocation.y = originalLoc.y - heightToLower;
+			audio.Play ();
 		}
 		isTriggered = true;
 	}

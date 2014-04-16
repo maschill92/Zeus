@@ -14,6 +14,7 @@ public class puzzleLever : Interactable {
 		if(!isOn)
 		{
 			Activate();
+			audio.Play ();
 		}
 	}
 

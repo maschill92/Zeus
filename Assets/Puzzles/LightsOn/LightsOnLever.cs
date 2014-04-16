@@ -6,7 +6,7 @@ public class LightsOnLever : Interactable {
 	public Torch myTorch;
 	public Material offMat;
 	public Material onMat;
-	
+
 	public override void Interact(Transform interactor)
 	{
 		Toggle();
@@ -22,5 +22,6 @@ public class LightsOnLever : Interactable {
 		{
 			myTorch.Activate();
 		}
+		audio.Play ();
 	}
 }
