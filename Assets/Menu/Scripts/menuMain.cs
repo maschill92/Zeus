@@ -24,14 +24,21 @@ public class menuMain : MonoBehaviour {
 		"Michael Schilling:",
 		"\tCharacter Controls",
 		"\tObject Programming",
-		"\tPuzzle Programming"} ;
+		"\tPuzzle Programming\n",
+		"Special Thanks:\n",
+		"Michael's Girlfriend:",
+		"\tArt Stills\n",
+		"Whoever the Fuck:",
+		"\tNarrator\n",
+		"Accomodations:\n"
+		} ;
 
 	private Texture mouseImage;
 	private Texture wasdImage;
 	private Texture eImage;
 	private Texture spaceImage;
 	private Texture shiftImage;
-	private Texture blackScreen;
+	private Texture menuStill;
 
 	Vector2 scrollPosition;
 
@@ -42,16 +49,18 @@ public class menuMain : MonoBehaviour {
 	private Page currentPage;
 
 	void Start () {
+		Time.timeScale = 1;
+		AudioListener.pause = false;
 		mouseImage = Resources.Load ("MouseKey") as Texture;
 		wasdImage = Resources.Load ("WASDKey") as Texture;
 		eImage = Resources.Load ("EKey") as Texture;
 		spaceImage = Resources.Load ("SpaceKey") as Texture;
 		shiftImage = Resources.Load ("ShiftKey") as Texture;
-		blackScreen = Resources.Load ("BlackScreen") as Texture;
+		menuStill = Resources.Load ("BlackScreen") as Texture; // change to main menu art still when ready
 	}
 
 	void OnGUI () {
-		GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), blackScreen); // put art still in when ready
+		GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), menuStill);
 		switch (currentPage) {
 			case Page.Main:
 				MainMenu();
@@ -89,12 +98,10 @@ public class menuMain : MonoBehaviour {
 	void ShowLevels() {
 		BeginPage (200, 200);
 		if (GUILayout.Button ("Level 1")) {
-			// play intro movie
-			Application.LoadLevel ("Level1"); 
+			Application.LoadLevel ("Introduction");
 		}
 		if (GUILayout.Button("Level 2")) {
-			// play transition
-			Application.LoadLevel ("Level2");
+			Application.LoadLevel ("Transition");
 		}
 		EndPage ();
 	}
@@ -138,8 +145,7 @@ public class menuMain : MonoBehaviour {
 	void MainMenu() {
 		BeginPage(200,200);
 		if (GUILayout.Button ("Start Game")) {
-			// play intro movie
-			Application.LoadLevel ("Level1"); 
+			Application.LoadLevel ("Introduction"); 
 		}
 		if (GUILayout.Button ("Level Select")) {
 			currentPage = Page.Levels;

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class guiPrompt : MonoBehaviour {
 
-	int promptSecond;
+	private int promptSecond;
 	private float lastUpdate;
 
 	private Texture eImage;
@@ -18,7 +18,7 @@ public class guiPrompt : MonoBehaviour {
 
 	void Start () {
 		promptSecond = 0;
-		lastUpdate = 0;
+		lastUpdate = Time.time;
 		eImage = Resources.Load ("EKey") as Texture;
 		spaceImage = Resources.Load ("SpaceKey") as Texture;
 		shiftImage = Resources.Load ("ShiftKey") as Texture;
@@ -31,7 +31,7 @@ public class guiPrompt : MonoBehaviour {
 				promptSecond++;
 				lastUpdate = Time.time;
 			}
-			if (promptSecond > 5) {
+			if (promptSecond >= 5) {
 				promptSecond = 0;
 				currentPage = Page.None;
 			}
