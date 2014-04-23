@@ -17,7 +17,7 @@ public class HeadBob : MonoBehaviour
 	{
 		midpoint = this.transform.localPosition.y;
         characterMotor = this.transform.parent.GetComponent<CharacterMotor> ();
-		footSteps = (AudioClip)Resources.Load ("Sound/Footsteps/footSteps");
+		footSteps = Resources.Load ("Sound/Footsteps/footSteps") as AudioClip;
 	}
 
 	void Update ()
@@ -51,7 +51,7 @@ public class HeadBob : MonoBehaviour
 			{
 				if(characterMotor.movement.velocity.magnitude != 0.0f)
 				{
-					audio.PlayOneShot (footSteps, 0.25f);
+					audio.PlayOneShot (footSteps, 0.10f);
 				}
 				timer -= Mathf.PI * 2;
 			}
