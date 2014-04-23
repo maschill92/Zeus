@@ -32,6 +32,7 @@ public class Manager : MonoBehaviour
 
     public void Kill()
     {
+        GetComponent<CharacterMotor>().inputMoveDirection = new Vector3(0f, 0f, 0f);
         FindObjectOfType<menuDeath>().killPlayer();
     }
 

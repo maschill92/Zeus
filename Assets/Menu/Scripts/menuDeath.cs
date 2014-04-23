@@ -93,5 +93,6 @@ public class menuDeath : MonoBehaviour {
 		GetComponent<menuPause> ().UnPauseGame (false);
 		currentPage = Page.None;
 		FindObjectOfType<Manager>().Reset();
+        FindObjectOfType<LevelManager>().Reset();
 	}
 }

@@ -15,7 +15,7 @@ public class DeathOnContact : MonoBehaviour {
     {
         if (other.gameObject.tag == "Player")
         {
-            FindObjectOfType<Manager>().Kill();
+            other.gameObject.GetComponent<Manager>().Kill();
         }
     }
 }
