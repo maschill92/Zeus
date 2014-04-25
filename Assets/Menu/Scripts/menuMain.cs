@@ -3,7 +3,7 @@ using System.Collections;
 
 public class menuMain : MonoBehaviour {
 
-	public string[] credits = { // change in future
+	public string[] credits = { // change over time
 		"University of North Dakota\n",
 		"Instructor:",
 		"\tDr. Ron Marsh\n",
@@ -26,11 +26,12 @@ public class menuMain : MonoBehaviour {
 		"\tObject Programming",
 		"\tPuzzle Programming\n",
 		"Special Thanks:\n",
-		"Michael's Girlfriend:",
+		"Kasie Kinzler:",
 		"\tArt Stills\n",
-		"Whoever the Fuck:",
+		"Someone:",
 		"\tNarrator\n",
-		"Accomodations:\n"
+		"Accomodations:",
+		"\tOpenGameArt.org"
 		} ;
 
 	private Texture mouseImage;
@@ -38,7 +39,6 @@ public class menuMain : MonoBehaviour {
 	private Texture eImage;
 	private Texture spaceImage;
 	private Texture shiftImage;
-	private Texture menuStill;
 
 	Vector2 scrollPosition;
 
@@ -56,11 +56,10 @@ public class menuMain : MonoBehaviour {
 		eImage = Resources.Load ("EKey") as Texture;
 		spaceImage = Resources.Load ("SpaceKey") as Texture;
 		shiftImage = Resources.Load ("ShiftKey") as Texture;
-		menuStill = Resources.Load ("BlackScreen") as Texture; // change to main menu art still when ready
 	}
 
 	void OnGUI () {
-		GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), menuStill);
+		DrawOutline (new Rect((Screen.width / 6), (Screen.height / 10), 750, 750));
 		switch (currentPage) {
 			case Page.Main:
 				MainMenu();
@@ -77,11 +76,31 @@ public class menuMain : MonoBehaviour {
 		} 
 	}
 
+	void DrawOutline(Rect position) {
+		GUI.skin.label.alignment = TextAnchor.UpperCenter;
+		string text = "Hunt for the Artifact";
+		GUI.skin.label.fontSize = 64;
+		GUI.color = Color.black;
+		position.x--;
+		GUI.Label(position, text);
+		position.x += 2;
+		GUI.Label(position, text);
+		position.x--;
+		position.y--;
+		GUI.Label(position, text);
+		position.y += 2;
+		GUI.Label(position, text);
+		GUI.color = Color.white;
+		position.y--;
+		GUI.Label(position, text); // regular text
+		GUI.skin.label.alignment = TextAnchor.UpperLeft;
+	}
+
 	void ShowCredits() {
 		GUI.color = Color.white;
 		GUI.skin.label.fontSize = 18;
-		BeginPage(400,400);
-		scrollPosition = GUILayout.BeginScrollView (scrollPosition, GUILayout.Width (400), GUILayout.Height (400));
+		BeginPage(400, 300);
+		scrollPosition = GUILayout.BeginScrollView (scrollPosition, GUILayout.Width (300), GUILayout.Height (300));
 		foreach(string credit in credits) {
 			GUILayout.Label(credit);
 		}

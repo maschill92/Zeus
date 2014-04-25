@@ -8,15 +8,10 @@ public class guiKey : MonoBehaviour {
 
 	private Texture keyImage;
 
-	private AudioClip keyPickup;
-	private AudioClip keyUnlock;
-
 	void Start() {
 		currentKeys = 0;
 		displayKeys = "";
 		keyImage = Resources.Load ("Key") as Texture;
-		keyPickup = (AudioClip)Resources.Load ("Sound/Key/keyPickup");
-		keyUnlock = (AudioClip)Resources.Load ("Sound/Key/keyUnlock");
 	}
 
 	void Update() {
@@ -48,12 +43,10 @@ public class guiKey : MonoBehaviour {
 
 	public void Increase() {
 		currentKeys++;
-		audio.PlayOneShot (keyPickup);
 	}
 
 	public void Decrease(int value) {
 		currentKeys -= value;
-		audio.PlayOneShot (keyUnlock);
 	}
 
 	public void Set(int value) {

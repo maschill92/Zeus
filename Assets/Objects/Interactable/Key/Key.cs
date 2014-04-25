@@ -5,7 +5,6 @@ public class Key : Interactable {
 
 	private guiKey keyKeeper;
 
-	// Use this for initialization
 	void Start () {
 		keyKeeper = GameObject.FindObjectOfType<guiKey>();
 	}
@@ -13,6 +12,7 @@ public class Key : Interactable {
 	public override void Interact (Transform interactor)
 	{
 		keyKeeper.Increase();
+		AudioSource.PlayClipAtPoint (audio.clip, transform.position);
 		GameObject.Destroy(this.gameObject);
 	}
 }

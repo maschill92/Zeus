@@ -6,16 +6,9 @@ public class guiScore : MonoBehaviour {
 	public int totalScore;
 	private string displayScore;
 
-	private AudioClip scoreLow;
-	private AudioClip scoreMedium;
-	private AudioClip scoreHigh;
-
 	void Start() {
 		totalScore = 0;
 		displayScore = "";
-		scoreLow = (AudioClip)Resources.Load ("Sound/Score/scoreLow");
-		scoreMedium = (AudioClip)Resources.Load ("Sound/Score/scoreMedium");
-		scoreHigh = (AudioClip)Resources.Load ("Sounds/Score/scoreHigh");
 	}
 
 	void Update() {
@@ -67,12 +60,6 @@ public class guiScore : MonoBehaviour {
 
 	public void Increase(int value) {
 		totalScore += value;
-		if (value >= 10000)
-			audio.PlayOneShot (scoreHigh);
-		else if (value >= 5000)
-			audio.PlayOneShot (scoreMedium);
-		else
-			audio.PlayOneShot (scoreLow);
 	}
 
 	public void Set(int value) {
