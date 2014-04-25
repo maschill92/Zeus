@@ -29,7 +29,7 @@ public class ArrowTrap : Activatable {
 	{
 		if(other.tag == "Player" && arrowParticles != null && arrowParticles.isPlaying)
 		{
-			print ("Kill player because of arrowtrap!");
+			other.gameObject.GetComponent<Manager>().Kill();
 		}
 	}
 }
