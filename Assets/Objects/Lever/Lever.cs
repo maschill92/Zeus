@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof (Animator))]
 public class Lever : Interactable {
 
 	public Activatable[] thingsToActivate;
 	public bool isOneTimeTrigger = false;
 	private bool isOn = false;
-	public Material offMat;
-	public Material onMat;
+	//public Material offMat;
+	//public Material onMat;
+	Animator animator;
+
+
 
 	public override void Interact(Transform interactor)
 	{
@@ -23,8 +27,9 @@ public class Lever : Interactable {
 				thingsToActivate[i].Activate();
 			}
 			isOn = true;
-			renderer.material = new Material(onMat);
+			//renderer.material = new Material(onMat);
 			audio.Play();
+
 		}
 		// only allow deactivation if the lever allows itself to be toggled indefinitely
 		else if (!isOneTimeTrigger)
@@ -34,7 +39,7 @@ public class Lever : Interactable {
 				thingsToActivate[i].Deactivate();
 			}
 			isOn = false;
-			renderer.material = new Material(offMat);
+			//renderer.material = new Material(offMat);
 			audio.Play();
 		}
 	}
