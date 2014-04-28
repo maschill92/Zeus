@@ -36,9 +36,8 @@ public class Manager : MonoBehaviour
         FindObjectOfType<menuDeath>().killPlayer();
     }
 
-    void ControllerColliderOnHit(ControllerColliderHit other)
+    void OnControllerColliderHit(ControllerColliderHit other)
     {
-        print("hit");
         if (other.gameObject.GetComponent<DeathOnContact>() != null)
         {
             Kill();
