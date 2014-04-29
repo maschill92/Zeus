@@ -59,7 +59,7 @@ public class menuMain : MonoBehaviour {
 	}
 
 	void OnGUI () {
-		DrawHeader (new Rect(((Screen.width - 1000) / 2), (Screen.height / 6), 1000, 400));
+		DrawHeader (new Rect(((Screen.width - 1000) / 2), (Screen.height / 12), 1000, 400));
 		switch (currentPage) {
 			case Page.Main:
 				MainMenu();
@@ -100,7 +100,7 @@ public class menuMain : MonoBehaviour {
 		GUI.skin.label.alignment = TextAnchor.UpperLeft;
 		GUI.color = Color.white;
 		GUI.skin.label.fontSize = 18;
-		BeginPage(400, 400);
+		BeginPage(300, 300);
 		scrollPosition = GUILayout.BeginScrollView (scrollPosition, GUILayout.Width (300), GUILayout.Height (300));
 		foreach(string credit in credits) {
 			GUILayout.Label(credit);
@@ -141,7 +141,8 @@ public class menuMain : MonoBehaviour {
 		GUI.color = Color.white;
 		GUI.skin.label.fontSize = 30;
 		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
-		BeginPage (400, 400);
+		BeginPage (400, 300);
+		scrollPosition = GUILayout.BeginScrollView (scrollPosition, GUILayout.Width (400), GUILayout.Height (300));
 		GUILayout.BeginHorizontal ();
 		GUILayout.BeginVertical ();
 		GUILayout.Label (mouseImage);
@@ -158,6 +159,7 @@ public class menuMain : MonoBehaviour {
 		GUILayout.Label ("Sprint", GUILayout.Height (75));
 		GUILayout.EndVertical ();
 		GUILayout.EndHorizontal ();
+		GUILayout.EndScrollView ();
 		EndPage ();
 		GUI.skin.label.alignment = TextAnchor.UpperLeft;
 	}
