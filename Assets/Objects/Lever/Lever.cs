@@ -7,11 +7,12 @@ public class Lever : Interactable {
 	public Activatable[] thingsToActivate;
 	public bool isOneTimeTrigger = false;
 	private bool isOn = false;
-	//public Material offMat;
-	//public Material onMat;
-	Animator animator;
+    Animator animator;
 
-
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
 	public override void Interact(Transform interactor)
 	{
@@ -20,6 +21,7 @@ public class Lever : Interactable {
 
 	public virtual void Toggle()
 	{
+        print(animator.GetBool("IsOn"));
 		if (!isOn)
 		{
 			for(int i = 0; i < thingsToActivate.Length; i++)
@@ -27,8 +29,9 @@ public class Lever : Interactable {
 				thingsToActivate[i].Activate();
 			}
 			isOn = true;
-			//renderer.material = new Material(onMat);
+            print("lever on");
 			audio.Play();
+            animator.SetBool("IsOn", true);
 
 		}
 		// only allow deactivation if the lever allows itself to be toggled indefinitely
@@ -38,9 +41,10 @@ public class Lever : Interactable {
 			{
 				thingsToActivate[i].Deactivate();
 			}
-			isOn = false;
-			//renderer.material = new Material(offMat);
-			audio.Play();
+            isOn = false;
+            print("lever off");
+            audio.Play();
+            animator.SetBool("IsOn", false);
 		}
 	}
 }

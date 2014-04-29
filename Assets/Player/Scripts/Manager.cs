@@ -15,11 +15,11 @@ public class Manager : MonoBehaviour
 
 	void Update()
 	{
-		RaycastHit hitInfo;
-		if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, interactDistance, layerMask))
-		{
-			if(Input.GetButtonDown("Interact"))
-			{
+        RaycastHit hitInfo;
+        if (Input.GetButtonDown("Interact"))
+        {
+		    if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, interactDistance, layerMask))
+		    {
 				hitInfo.transform.gameObject.GetComponent<Interactable>().Interact(this.playerCamera.GetComponentInChildren<Rigidbody>().transform);
 			}
 		}
