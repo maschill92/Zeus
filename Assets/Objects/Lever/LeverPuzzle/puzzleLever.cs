@@ -3,33 +3,37 @@ using System.Collections;
 
 public class puzzleLever : Interactable {
 
-	public LeverPuzzle master;
+    [HideInInspector]
+    public LeverPuzzle master;
+    [HideInInspector]
 	public int INDEX;
 	private bool isOn = false;
-	public Material offMat;
-	public Material onMat;
+    private Animator animator;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 	
 	public override void Interact(Transform interactor)
 	{
 		if(!isOn)
 		{
 			Activate();
-			audio.Play ();
+			audio.Play();
 		}
 	}
 
 	public void Activate()
-	{		
-		isOn = true;
-		renderer.material = onMat;
-		// ANIMATE NOW
+	{
+        isOn = true;
+        animator.SetBool("IsOn", true);
 		master.LeverActivated(INDEX);
 	}
 
 	public void Deactivate()
 	{
 		isOn = false;
-		// ANIMATE NOW
-		renderer.material = offMat;
+        animator.SetBool("IsOn", false);
 	}
 }

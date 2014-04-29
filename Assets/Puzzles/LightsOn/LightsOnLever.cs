@@ -4,8 +4,13 @@ using System.Collections;
 public class LightsOnLever : Interactable {
 
 	public Torch myTorch;
-	public Material offMat;
-	public Material onMat;
+    private bool isOn = false;
+    private Animator animator;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
 	public override void Interact(Transform interactor)
 	{
@@ -14,6 +19,8 @@ public class LightsOnLever : Interactable {
 
 	public void Toggle()
 	{
+        isOn = !isOn;
+        animator.SetBool("IsOn", isOn);
 		if(myTorch.Active)
 		{
 			myTorch.Deactivate();
