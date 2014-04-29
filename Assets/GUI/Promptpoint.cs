@@ -16,15 +16,15 @@ public class Promptpoint : MonoBehaviour {
 				shownInteract = true;
 				FindObjectOfType<guiPrompt>().ActivateInteractPrompt ();
 			}
-			if (promptType.Equals ("Sprint") && shownSprint == false) {
+			else if (promptType.Equals ("Sprint") && shownSprint == false) {
 				shownSprint = true;
 				FindObjectOfType<guiPrompt>().ActivateSprintPrompt();
 			}
-			if (promptType.Equals ("Jump") && shownJump == false) {
+			else if (promptType.Equals ("Jump") && shownJump == false) {
 				shownJump = true;
 				FindObjectOfType<guiPrompt>().ActivateJumpPrompt();
 			}
-			if (promptType.Equals ("Key") && shownKey == false) {
+			else if (promptType.Equals ("Key") && shownKey == false) {
 				shownKey = true;
 				FindObjectOfType<guiPrompt>().ActivateKeyPrompt();
 			}
