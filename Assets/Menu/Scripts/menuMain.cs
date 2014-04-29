@@ -59,7 +59,7 @@ public class menuMain : MonoBehaviour {
 	}
 
 	void OnGUI () {
-		DrawOutline (new Rect((Screen.width / 6), (Screen.height / 10), 750, 750));
+		DrawHeader (new Rect(((Screen.width - 1000) / 2), (Screen.height / 6), 1000, 400));
 		switch (currentPage) {
 			case Page.Main:
 				MainMenu();
@@ -73,33 +73,34 @@ public class menuMain : MonoBehaviour {
 			case Page.Levels:
 				ShowLevels();
 				break;
-		} 
+		}
 	}
 
-	void DrawOutline(Rect position) {
-		GUI.skin.label.alignment = TextAnchor.UpperCenter;
+	void DrawHeader(Rect position) {
 		string text = "Hunt for the Artifact";
 		GUI.skin.label.fontSize = 64;
+		GUIStyle centeredText = new GUIStyle ("label");
+		centeredText.alignment = TextAnchor.UpperCenter;
 		GUI.color = Color.black;
 		position.x--;
-		GUI.Label(position, text);
+		GUI.Label(position, text, centeredText);
 		position.x += 2;
-		GUI.Label(position, text);
+		GUI.Label(position, text, centeredText);
 		position.x--;
 		position.y--;
-		GUI.Label(position, text);
+		GUI.Label(position, text, centeredText);
 		position.y += 2;
-		GUI.Label(position, text);
+		GUI.Label(position, text, centeredText);
 		GUI.color = Color.white;
 		position.y--;
-		GUI.Label(position, text); // regular text
-		GUI.skin.label.alignment = TextAnchor.UpperLeft;
+		GUI.Label(position, text, centeredText); // regular text
 	}
 
 	void ShowCredits() {
+		GUI.skin.label.alignment = TextAnchor.UpperLeft;
 		GUI.color = Color.white;
 		GUI.skin.label.fontSize = 18;
-		BeginPage(400, 300);
+		BeginPage(400, 400);
 		scrollPosition = GUILayout.BeginScrollView (scrollPosition, GUILayout.Width (300), GUILayout.Height (300));
 		foreach(string credit in credits) {
 			GUILayout.Label(credit);

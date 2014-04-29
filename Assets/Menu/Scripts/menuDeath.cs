@@ -19,14 +19,14 @@ public class menuDeath : MonoBehaviour {
 	}
 	
 	void LateUpdate () {
-		if (isDead ||  Input.GetKeyDown ("l")) { // remove 'L' input when player killing is implemented
+		if (isDead) { 
 			switch(currentPage) {
-			case Page.None:
-				StartDeath();
-				break;
-			default:
-				currentPage = Page.Main;
-				break;
+				case Page.None:
+					StartDeath();
+					break;
+				default:
+					currentPage = Page.Main;
+					break;
 			}
 		}
 	}

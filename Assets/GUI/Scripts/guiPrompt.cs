@@ -11,7 +11,7 @@ public class guiPrompt : MonoBehaviour {
 	private Texture shiftImage;
 
 	public enum Page {
-		None, Interact, Jump, Sprint
+		None, Interact, Jump, Sprint, Key
 	}
 	
 	private Page currentPage;
@@ -36,9 +36,6 @@ public class guiPrompt : MonoBehaviour {
 				currentPage = Page.None;
 			}
 		}
-		if (Input.GetKeyDown ("p")) {
-			ActivateInteractPrompt ();
-		}
 	}
 
 	void OnGUI() {
@@ -51,6 +48,9 @@ public class guiPrompt : MonoBehaviour {
 				break;
 			case Page.Sprint:
 				ShowSprint();
+				break;
+			case Page.Key:
+				ShowKey();
 				break;
 			default:
 				currentPage = Page.None;
@@ -76,6 +76,10 @@ public class guiPrompt : MonoBehaviour {
 
 	public void ActivateSprintPrompt() { // call to display Sprint prompt
 		currentPage = Page.Sprint;
+	}
+
+	public void ActivateKeyPrompt() { // call to display Key prompt
+		currentPage = Page.Key;
 	}
 
 	void ShowInteract() {
@@ -120,6 +124,20 @@ public class guiPrompt : MonoBehaviour {
 		GUILayout.Label ("Hold", GUILayout.Width (75), GUILayout.Height (75));
 		GUILayout.Label (shiftImage);
 		GUILayout.Label ("to Sprint", GUILayout.Width (130), GUILayout.Height (75));
+		GUILayout.FlexibleSpace ();
+		GUILayout.EndHorizontal ();
+		GUI.skin.label.alignment = TextAnchor.UpperLeft;
+		GUILayout.EndArea();
+	}
+
+	void ShowKey() {
+		GUI.color = Color.white;
+		GUI.skin.label.fontSize = 32;
+		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
+		BeginPage (1000, 100);
+		GUILayout.BeginHorizontal ();
+		GUILayout.FlexibleSpace ();
+		GUILayout.Label ("Find Keys to Use on Locked Doors", GUILayout.Width (550), GUILayout.Height (75));
 		GUILayout.FlexibleSpace ();
 		GUILayout.EndHorizontal ();
 		GUI.skin.label.alignment = TextAnchor.UpperLeft;
