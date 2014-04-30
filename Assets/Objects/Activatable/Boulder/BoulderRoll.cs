@@ -19,6 +19,7 @@ public class BoulderRoll : Activatable {
 	public override void Activate ()
 	{
 		StartCoroutine("Roll");
+		audio.Play ();
 		//isActivated = true;
 		//rigidbody.useGravity = true;
 	}
@@ -31,6 +32,10 @@ public class BoulderRoll : Activatable {
 		yield return new WaitForSeconds(timeDelay);
 		rigidbody.velocity = initialVelocity;
 		rigidbody.useGravity = true;
+		if (rigidbody.velocity.magnitude == 0) {
+			audio.Stop ();
+		}
+
 	}
 
     public void Reset()

@@ -19,14 +19,14 @@ public class menuDeath : MonoBehaviour {
 	}
 	
 	void LateUpdate () {
-		if (isDead ||  Input.GetKeyDown ("l")) { // remove 'L' input when player killing is implemented
+		if (isDead) { 
 			switch(currentPage) {
-			case Page.None:
-				StartDeath();
-				break;
-			default:
-				currentPage = Page.Main;
-				break;
+				case Page.None:
+					StartDeath();
+					break;
+				default:
+					currentPage = Page.Main;
+					break;
 			}
 		}
 	}
@@ -40,7 +40,8 @@ public class menuDeath : MonoBehaviour {
 				DeathMenu();
 				break;
 			}
-		}   
+			DrawHeader (new Rect(((Screen.width - 1000) / 2), (Screen.height / 8), 1000, 400));
+		}
 	}
 	
 	public void killPlayer() { // call to display Death Menu
@@ -61,7 +62,6 @@ public class menuDeath : MonoBehaviour {
 			restartText = ("Restart (" + trysRemaining.ToString() + " lives remaining)");
 		else
 			restartText = ("Restart (" + trysRemaining.ToString() + " life remaining)");
-		GUILayout.Label ("You Are Dead\n");
 		if (trysRemaining > 0) { // only display if current lives are greater than zero
 			if (GUILayout.Button (restartText)) {
 				EndDeath ();
@@ -74,6 +74,26 @@ public class menuDeath : MonoBehaviour {
 			Application.Quit ();
 		}
 		GUILayout.EndArea();
+	}
+
+	private void DrawHeader(Rect position) {
+		string text = "You Are Dead";
+		GUI.skin.label.fontSize = 64;
+		GUIStyle centeredText = new GUIStyle ("label");
+		centeredText.alignment = TextAnchor.UpperCenter;
+		GUI.color = Color.black;
+		position.x--;
+		GUI.Label(position, text, centeredText);
+		position.x += 2;
+		GUI.Label(position, text, centeredText);
+		position.x--;
+		position.y--;
+		GUI.Label(position, text, centeredText);
+		position.y += 2;
+		GUI.Label(position, text, centeredText);
+		GUI.color = Color.white;
+		position.y--;
+		GUI.Label(position, text, centeredText); // regular text
 	}
 	
 	void StartDeath() {
