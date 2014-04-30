@@ -30,6 +30,21 @@ public class Torch : Activatable {
 
 		puzzleManager = GameObject.FindObjectOfType<LightsOn>();
 	}
+
+	void Update()
+	{
+		if (isActive == true)
+		{
+			if (audio.isPlaying == false)
+			{
+				audio.Play ();
+			}
+		} 
+		else
+		{
+			audio.Stop ();
+		}
+	}
 	
 	public override void Deactivate()
 	{

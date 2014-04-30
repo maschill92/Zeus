@@ -34,14 +34,18 @@ public class RisingStair : Activatable
 
     public override void Activate()
     {
+		audio.Stop ();
         targetLocation.y = originalLoc.y + heightToRaise;
         isActivated = true;
+		audio.Play ();
     }
 
     public override void Deactivate()
     {
+		audio.Stop ();
         targetLocation.y = originalLoc.y;
         isActivated = false;
+		audio.Play ();
 
     }
 
@@ -57,6 +61,10 @@ public class RisingStair : Activatable
             Activate();
         }
         AdjustHeight();
+		if (this.transform.position.y == targetLocation.y || this.transform.position.y == originalLoc.y)
+		{
+			audio.Stop ();
+		}
     }
 
     private void AdjustHeight()
