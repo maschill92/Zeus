@@ -40,6 +40,9 @@ public class SlidingDoor : Activatable {
 			{
 				this.transform.position = new Vector3(originalLoc.x, newY, originalLoc.z);
 			}
+			if (audio.isPlaying == false) {
+				audio.Play ();
+			}
 		}
 
 		// Move down
@@ -54,6 +57,10 @@ public class SlidingDoor : Activatable {
 			{
 				this.transform.position = new Vector3(originalLoc.x, newY, originalLoc.z);
 			}
+			if (audio.isPlaying == false) {
+				audio.Play ();
+			}
 		}
+
 	}
 }
