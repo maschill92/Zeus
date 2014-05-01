@@ -9,6 +9,10 @@ public class SwitchBGM : MonoBehaviour {
 	private bool inside;
 	public float fadeSpeed;
 	private bool done;
+	public float inVol;
+	public float outVol;
+	private float vol;
+
 	// Use this for initialization
 	void Start () {
 		isColliding = false;
@@ -19,6 +23,7 @@ public class SwitchBGM : MonoBehaviour {
 		if (c.tag == "Player") {
 			isColliding = true;
 			inside = true;
+			vol = inVol;
 			done = false;
 		}
 	}
@@ -26,6 +31,7 @@ public class SwitchBGM : MonoBehaviour {
 	void OnTriggerExit(Collider c) {
 		if (c.tag == "Player") {
 			isColliding = true;
+			vol = outVol;
 			inside = false;
 			done = false;
 		}
@@ -43,7 +49,7 @@ public class SwitchBGM : MonoBehaviour {
 			audio.loop  = true;
 		}
 
-		if (audio.volume <= .6 && !isColliding) {
+		if (audio.volume <= vol && !isColliding) {
 			audio.volume += fadeSpeed * Time.deltaTime;
 		}
 	}
