@@ -134,7 +134,7 @@ public class guiPrompt : MonoBehaviour {
 		GUI.color = Color.white;
 		GUI.skin.label.fontSize = 32;
 		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
-		BeginPage (1000, 100);
+		BeginPage (1000, 200);
 		GUILayout.BeginHorizontal ();
 		GUILayout.FlexibleSpace ();
 		GUILayout.Label ("Find Keys to Use on Locked Doors", GUILayout.Width (550), GUILayout.Height (75));

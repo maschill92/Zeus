@@ -3,7 +3,7 @@ using System.Collections;
 
 public class menuMain : MonoBehaviour {
 
-	public string[] credits = { // change over time
+	private string[] credits = { // change over time
 		"University of North Dakota\n",
 		"Instructor:",
 		"\tDr. Ron Marsh\n",
@@ -31,7 +31,18 @@ public class menuMain : MonoBehaviour {
 		"Someone:",
 		"\tNarrator\n",
 		"Accomodations:",
-		"\tOpenGameArt.org"
+		"This game uses these sounds from OpenGameArt.org:",
+		"\t\"sell_buy_item.wav\" by Ogrebane (http://opengameart.org/users/ogrebane)",
+		"\t\"waterfall1.ogg\" and \"stream1.ogg\" by kurt (http://opengameart.org/users/kurt)\n",
+		"This game uses these sounds from freesound.org:",
+		"\t\"bats.wav\" by soundbytez (http://www.freesound.org/people/soundbytez/)",
+		"\t\"bridge.wav\" edited from Sergenious (http://www.freesound.org/people/Sergenious/)",
+		"\t\"concrete blocks moving2.wav\" edited from FreqMan (http://www.freesound.org/people/FreqMan/)",
+		"\t\"fire_minidisk (suonho).wav\" by suonho (http://www.freesound.org/people/suonho/)",
+		"\t\"Indy Blow Darts Cue 3.wav\" edited from pscsound (http://www.freesound.org/people/pscsound/)",
+		"\t\"Iron gate, street.wav\" edited from Trautwein (http://www.freesound.org/people/Trautwein/)",
+		"\t\"Keys1.wav\" by EverHeat (http://www.freesound.org/people/EverHeat/)",
+		"\t\"Moving a boulder.wav\" edited from BW_Clowes (http://www.freesound.org/people/BW_Clowes/)"
 		} ;
 
 	private Texture mouseImage;
@@ -100,8 +111,8 @@ public class menuMain : MonoBehaviour {
 		GUI.skin.label.alignment = TextAnchor.UpperLeft;
 		GUI.color = Color.white;
 		GUI.skin.label.fontSize = 18;
-		BeginPage(300, 300);
-		scrollPosition = GUILayout.BeginScrollView (scrollPosition, GUILayout.Width (300), GUILayout.Height (300));
+		BeginPage(500, 300);
+		scrollPosition = GUILayout.BeginScrollView (scrollPosition, GUILayout.Width (500), GUILayout.Height (300));
 		foreach(string credit in credits) {
 			GUILayout.Label(credit);
 		}

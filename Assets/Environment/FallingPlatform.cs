@@ -22,7 +22,7 @@ public class FallingPlatform : MonoBehaviour {
 
 	IEnumerator Fall()
 	{
-		AudioSource.PlayClipAtPoint (audio.clip, transform.position);
+		audio.Play ();
 		yield return new WaitForSeconds(fallTimeDelay);
 		rigidbody.isKinematic = false;
 		rigidbody.useGravity = true;

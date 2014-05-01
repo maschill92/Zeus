@@ -17,12 +17,13 @@ public class SlidingDoor : Activatable {
 	public override void Activate ()
 	{
 		targetLocation.y = originalLoc.y + heightToRaise;
+		audio.Play ();
 	}
 
 	public override void Deactivate ()
 	{
 		targetLocation.y = originalLoc.y;
-
+		audio.Play ();
 	}
 
 
@@ -40,8 +41,9 @@ public class SlidingDoor : Activatable {
 			{
 				this.transform.position = new Vector3(originalLoc.x, newY, originalLoc.z);
 			}
-			if (audio.isPlaying == false) {
-				audio.Play ();
+			if (this.transform.position.y == targetLocation.y || this.transform.position.y == originalLoc.y)
+			{
+				audio.Stop ();
 			}
 		}
 
