@@ -67,6 +67,7 @@ public class menuMain : MonoBehaviour {
 		eImage = Resources.Load ("EKey") as Texture;
 		spaceImage = Resources.Load ("SpaceKey") as Texture;
 		shiftImage = Resources.Load ("ShiftKey") as Texture;
+		InitializeFile ();
 	}
 
 	void OnGUI () {
@@ -193,5 +194,15 @@ public class menuMain : MonoBehaviour {
 			Application.Quit ();
 		}
 		EndPage();
+	}
+
+	void InitializeFile() {
+		if (!System.IO.Directory.Exists("C:\\SavedGames\\Hunt")) {
+			System.IO.Directory.CreateDirectory("C:\\SavedGames\\Hunt");
+		}
+		//Score=0
+		//FirstTime=0
+		//SecondTime=0
+		System.IO.File.WriteAllText ("C:\\SavedGames\\Hunt\\data.txt", "Score=0\nFirstTime=0\nSecondTime=0");
 	}
 }

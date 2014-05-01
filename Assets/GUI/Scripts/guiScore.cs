@@ -9,6 +9,7 @@ public class guiScore : MonoBehaviour {
 	void Start() {
 		totalScore = 0;
 		displayScore = "";
+		LoadScore ();
 	}
 
 	void Update() {
@@ -72,5 +73,25 @@ public class guiScore : MonoBehaviour {
 	
 	public void Reset() {
 		totalScore = 0;
+	}
+
+	void LoadScore() {
+		if (!System.IO.Directory.Exists ("C:\\SavedGames\\Hunt")) {
+			return;
+		}
+		System.IO.FileInfo file = new System.IO.FileInfo ("C:\\SavedGames\\Hunt\\data.txt");
+		System.IO.StreamReader reader = file.OpenText();
+		string text = reader.ReadLine ();
+		string score = "";
+		bool startRead = false;
+		for (int i = 0; i < text.Length; i++) {
+			if (text[i] == '=') { // start reading data
+				startRead = true;
+			}
+			else if (startRead == true) {
+				score += ("" + text[i]);
+			}
+		}
+		Set (System.Convert.ToInt32 (score));
 	}
 }
