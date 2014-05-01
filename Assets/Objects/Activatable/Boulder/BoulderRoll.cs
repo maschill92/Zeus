@@ -3,8 +3,8 @@ using System.Collections;
 
 public class BoulderRoll : Activatable {
 
-    public Vector3 initPos;
-    public Quaternion initRot;
+    private Vector3 initPos;
+    private Quaternion initRot;
 	public Vector3 angularVelocity = new Vector3(-500f, 0f, 0f);
 	public Vector3 initialVelocity = new Vector3(10f, 0f, 0f);
 	public float timeDelay = 3f;
@@ -18,6 +18,7 @@ public class BoulderRoll : Activatable {
 
 	public override void Activate ()
 	{
+        gameObject.AddComponent<DeathOnContact>();
 		StartCoroutine("Roll");
 		audio.Play ();
 		//isActivated = true;
