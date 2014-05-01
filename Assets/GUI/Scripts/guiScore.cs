@@ -20,7 +20,7 @@ public class guiScore : MonoBehaviour {
 			displayScore = "00000" + totalScore;
 		}
 		else if (totalScore < 100) {
-			displayScore = "00" + totalScore;
+			displayScore = "0000" + totalScore;
 		}
 		else if (totalScore < 1000) {
 			displayScore = "000" + totalScore;
