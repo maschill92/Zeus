@@ -3,26 +3,62 @@ using System.Collections;
 
 public class CrushingWall : Activatable {
 
-    public float totalDistanceToMove = 3.125f;
-    public float speed = -0.5f;
+    public float totalDistanceToMove = 1.5f;
+    public float speed = 0.5f;
+    public float startDelay = 1f;
 
+    private Vector3 originalLocation;
+    private Vector3 targetLocation;
+    private bool isDoneMoving = false;
 	// Use this for initialization
-	void Start () {
-	
+	void Start ()
+    {
+        originalLocation = transform.position;
+        targetLocation = originalLocation;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update ()
+    {
+        if (this.transform.position.z > targetLocation.z)
+        {
+            float newZ = this.transform.position.z - (speed * Time.deltaTime);
+            if(newZ < targetLocation.z)
+            {
+                this.transform.position = new Vector3(originalLocation.x, originalLocation.y, targetLocation.z);
+            }
+            else
+            {
+                this.transform.position = new Vector3(originalLocation.x, originalLocation.y, newZ);
+            }
+        }
+        if(this.transform.position.z <= targetLocation.z)
+        {
+            isDoneMoving = true;
+        }
 	}
 
     public override void Activate()
     {
-        throw new System.NotImplementedException();
+        StartCoroutine(StartSlide());
     }
 
     public override void Deactivate()
     {
-        throw new System.NotImplementedException();
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (isDoneMoving && other.tag == "Player")
+        {
+            isDoneMoving = false;
+            other.transform.root.GetComponent<Manager>().Kill();
+        }
+    }
+
+    IEnumerator StartSlide()
+    {
+        yield return new WaitForSeconds(startDelay);
+        targetLocation.z -= totalDistanceToMove;
     }
 }
