@@ -16,7 +16,7 @@ public class endingStory : MonoBehaviour {
 	
 	void LateUpdate () {
 		if ((Time.time - beginTime) >= 0.0f) { // change 0 to narration clip time
-			Application.LoadLevel("MainMenu");
+			Application.LoadLevel("ScoreBoard2");
 		}
 	}
 

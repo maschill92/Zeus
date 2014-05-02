@@ -65,7 +65,7 @@ public class menuPause : MonoBehaviour
 	}
 	
 	void ShowBackButton() {
-		if (GUI.Button(new Rect((Screen.width / 2) - 30, ((Screen.height / 2) + (Screen.height / 3)), 75, 20), "Back")) {
+		if (GUI.Button(new Rect(((Screen.width / 2) - 30), ((Screen.height / 2) + (Screen.height / 3)), 75, 20), "Back")) {
 			currentPage = Page.Main;
 		}
 	}

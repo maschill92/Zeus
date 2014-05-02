@@ -34,13 +34,12 @@ public class guiScore : MonoBehaviour {
 		else {
 			displayScore = "" + totalScore;
 		}
-		displayScore = "Score:\t\t" + displayScore;
 	}
 
 	void OnGUI () {
 		GUI.skin.label.fontSize = 20;
 		GUI.color = Color.white;
-		DrawOutline (new Rect ((Screen.width - (Screen.width / 6)), (Screen.height / 20), 200, 64), displayScore);
+		DrawOutline (new Rect ((Screen.width - (Screen.width / 6)), (Screen.height / 20), 200, 64), ("Score:\t\t" + displayScore));
 	}
 
 	void DrawOutline(Rect position, string text) {
@@ -67,12 +66,8 @@ public class guiScore : MonoBehaviour {
 		totalScore = value;
 	}
 
-	public int Get() {
-		return totalScore;
-	}
-	
-	public void Reset() {
-		totalScore = 0;
+	public string Get() {
+		return displayScore;
 	}
 
 	void LoadScore() {
@@ -92,6 +87,7 @@ public class guiScore : MonoBehaviour {
 				score += ("" + text[i]);
 			}
 		}
+		reader.Close ();
 		Set (System.Convert.ToInt32 (score));
 	}
 }

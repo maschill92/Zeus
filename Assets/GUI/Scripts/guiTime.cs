@@ -36,13 +36,12 @@ public class guiTime : MonoBehaviour {
 		else { // case 4: mm:ss
 			displayTime = "" + currentMinute.ToString () + ":" + currentSecond.ToString ();
 		}
-		displayTime = "Time:\t\t" + displayTime;
 	}
 
 	void OnGUI () {
 		GUI.skin.label.fontSize = 20;
 		GUI.color = Color.white;
-		DrawOutline (new Rect ((Screen.width - (Screen.width / 6)), (Screen.height / 8), 200, 64), displayTime);
+		DrawOutline (new Rect ((Screen.width - (Screen.width / 6)), (Screen.height / 8), 200, 64), ("Time:\t\t" + displayTime));
 	}
 
 	void DrawOutline(Rect position, string text) {
@@ -66,16 +65,7 @@ public class guiTime : MonoBehaviour {
 		currentSecond = second;
 	}
 
-	public int GetMinute() {
-		return currentMinute;
-	}
-
-	public int GetSecond() {
-		return currentSecond;
-	}
-	
-	public void Reset() {
-		currentMinute = 0;
-		currentSecond = 0;
+	public string Get() {
+		return displayTime;
 	}
 }

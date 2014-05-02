@@ -122,7 +122,7 @@ public class menuMain : MonoBehaviour {
 	}
 
 	void ShowBackButton() {
-		if (GUI.Button(new Rect((Screen.width / 2) - 30, ((Screen.height / 2) + (Screen.height / 3)), 75, 20), "Back")) {
+		if (GUI.Button(new Rect(((Screen.width / 2) - 30), ((Screen.height / 2) + (Screen.height / 3)), 75, 20), "Back")) {
 			currentPage = Page.Main;
 		}
 	}
@@ -201,8 +201,8 @@ public class menuMain : MonoBehaviour {
 			System.IO.Directory.CreateDirectory("C:\\SavedGames\\Hunt");
 		}
 		//Score=0
-		//FirstTime=0
-		//SecondTime=0
-		System.IO.File.WriteAllText ("C:\\SavedGames\\Hunt\\data.txt", "Score=0\nFirstTime=0:0\nSecondTime=0:0");
+		//FirstTime=00:00
+		//SecondTime=00:00
+		System.IO.File.WriteAllText ("C:\\SavedGames\\Hunt\\data.txt", "Score=000000\nFirstTime=00:00\nSecondTime=00:00");
 	}
 }

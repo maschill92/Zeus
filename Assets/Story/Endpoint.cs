@@ -11,7 +11,7 @@ public class Endpoint : MonoBehaviour {
 		{
 			WriteScore ();
 			if (currentLevel == 1) {
-				Application.LoadLevel ("Transition");
+				Application.LoadLevel ("ScoreBoard1");
 			}
 			else if (currentLevel == 2) {
 				Application.LoadLevel ("Ending");
@@ -23,12 +23,11 @@ public class Endpoint : MonoBehaviour {
 		if (!System.IO.Directory.Exists ("C:\\SavedGames\\Hunt")) {
 			return;
 		}
-		int score = FindObjectOfType<guiScore> ().Get ();
-		int minute = FindObjectOfType<guiTime> ().GetMinute ();
-		int second = FindObjectOfType<guiTime> ().GetSecond ();
+		string score = FindObjectOfType<guiScore> ().Get ();
+		string time = FindObjectOfType<guiTime> ().Get ();
 		string write = "";
 		if (currentLevel == 1) {
-			write = ("Score=" + score + "\nFirstTime=" + minute + ":" + second + "\nSecondTime=0:0");
+			write = ("Score=" + score + "\nFirstTime=" + time + "\nSecondTime=00:00");
 		}
 		else if (currentLevel == 2) {
 			System.IO.FileInfo file = new System.IO.FileInfo ("C:\\SavedGames\\Hunt\\data.txt");
@@ -45,10 +44,8 @@ public class Endpoint : MonoBehaviour {
 					fTime += ("" + text [i]);
 				}
 			}
-			write = ("Score=" + score + "\nFirstTime=" + System.Convert.ToInt32 (fTime) + "\nSecondTime=" + minute + ":" + second);
-		}
-		else { // current level does not exist
-			return;
+			reader.Close ();
+			write = ("Score=" + score + "\nFirstTime=" + fTime + "\nSecondTime=" + time);
 		}
 		System.IO.File.WriteAllText ("C:\\SavedGames\\Hunt\\data.txt", write);
 	}
