@@ -93,13 +93,13 @@ public class ScoreBoard : MonoBehaviour {
 	}
 
 	string TimeBonus(int t) {
-		if (t <= 10) {
+		if (t < 10) {
 			bonus = "100000";
 		}
-		else if (t <= 13) {
+		else if (t < 13) {
 			bonus = "075000";
 		}
-		else if (t <= 15) {
+		else if (t < 15) {
 			bonus = "050000";
 		}
 		else {
@@ -177,11 +177,11 @@ public class ScoreBoard : MonoBehaviour {
 			}
 		}
 		else if (level == 2) {
-			for (int i = 0; i < time1.Length; i++) {
-				if (time1[i] == ':') {
+			for (int i = 0; i < time2.Length; i++) {
+				if (time2[i] == ':') {
 					break;
 				}
-				minute += ("" + time1[i]);
+				minute += ("" + time2[i]);
 			}
 		}
 		addTotals = TimeBonus (System.Convert.ToInt32 (minute));
