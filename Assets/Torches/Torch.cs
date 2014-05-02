@@ -85,4 +85,6 @@ public class Torch : Activatable {
 			flames.Play();
 		}
 	}
+
+    public override void Reset() { }
 }

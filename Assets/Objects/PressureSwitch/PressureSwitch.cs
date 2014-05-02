@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PressureSwitch : MonoBehaviour 
+public class PressureSwitch : AbstractResetable
 {
 	public Activatable[] thingsToActivate;
 	public bool isOneTimeTrigger = false; 	// true means that the switch can be triggered on, then off, then on...
@@ -99,4 +99,10 @@ public class PressureSwitch : MonoBehaviour
 	{
 		UnTrigger();
 	}
+
+    public override void Reset()
+    {
+        isTriggered = false;
+    }
+
 }

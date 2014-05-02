@@ -65,4 +65,6 @@ public class SlidingDoor : Activatable {
 		}
 
 	}
+
+    public override void Reset() { }
 }

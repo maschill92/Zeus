@@ -21,8 +21,6 @@ public class BoulderRoll : Activatable {
         gameObject.AddComponent<DeathOnContact>();
 		StartCoroutine("Roll");
 		audio.Play ();
-		//isActivated = true;
-		//rigidbody.useGravity = true;
 	}
 
 	public override void Deactivate (){}
@@ -39,7 +37,7 @@ public class BoulderRoll : Activatable {
 
 	}
 
-    public void Reset()
+    public override void Reset()
     {
         transform.position = initPos;
         transform.rotation = initRot;

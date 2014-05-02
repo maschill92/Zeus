@@ -97,4 +97,6 @@ public class RisingStair : Activatable
             }
         }
     }
+
+    public override void Reset() { }
 }

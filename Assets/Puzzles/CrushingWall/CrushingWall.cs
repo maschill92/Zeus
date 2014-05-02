@@ -61,4 +61,6 @@ public class CrushingWall : Activatable {
         yield return new WaitForSeconds(startDelay);
         targetLocation.z -= totalDistanceToMove;
     }
+
+    public override void Reset() { }
 }

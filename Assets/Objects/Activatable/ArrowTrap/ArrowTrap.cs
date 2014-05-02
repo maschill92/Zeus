@@ -32,4 +32,6 @@ public class ArrowTrap : Activatable {
 			other.gameObject.GetComponent<Manager>().Kill();
 		}
 	}
+
+    public override void Reset() { }
 }

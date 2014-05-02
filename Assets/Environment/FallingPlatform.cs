@@ -4,7 +4,7 @@ using System.Collections;
 public class FallingPlatform : MonoBehaviour {
 
 	public float fallTimeDelay = 2.0f;
-	public float fallDistance = 1.0f;
+	public float fallDistance = 150.0f;
 	private float finalHeight;
 	private Vector3 originalLoc;
 

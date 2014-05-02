@@ -1,17 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FallingPlatformManager : MonoBehaviour {
+public class FallingPlatformManager : AbstractResetable
+{
 
-	void Update()
-	{
-		if(Input.GetKeyDown(KeyCode.M))
-		{
-			Reset ();
-		}
-	}
-
-	public void Reset()
+	public override void Reset()
 	{
 		FallingPlatform[] allPlatforms = GameObject.FindObjectsOfType<FallingPlatform>();
 		for (int i = 0; i < allPlatforms.Length; i++)

@@ -9,7 +9,6 @@ public class Drawbridge : Activatable {
 		audio.Play ();
     }
 
-    public override void Deactivate()
-    {
-    }
+    public override void Deactivate() { }
+    public override void Reset() { }
 }
