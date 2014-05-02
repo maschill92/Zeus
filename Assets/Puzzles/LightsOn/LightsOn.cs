@@ -4,6 +4,7 @@ using System.Collections;
 public class LightsOn : MonoBehaviour {
 
 	public MultidimensionalTorch[] torchArray = new MultidimensionalTorch[3];
+	public Activatable ItemToActivate;
 
 	public void TorchToggled(int x, int y)
 	{
@@ -39,6 +40,7 @@ public class LightsOn : MonoBehaviour {
 
 		if (CheckForSuccess())
 		{
+			ItemToActivate.Activate();
 			print ("WOOOO!!!!");
 		}
 
