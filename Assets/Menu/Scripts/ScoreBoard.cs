@@ -53,7 +53,7 @@ public class ScoreBoard : MonoBehaviour {
 		BeginPage (500, 300);
 		GUILayout.BeginHorizontal ();
 		GUILayout.BeginVertical ();
-		GUILayout.Label ("Total Time:", GUILayout.Width (300));
+		GUILayout.Label ("Level Time:", GUILayout.Width (300));
 		GUILayout.Label ("Current Score:", GUILayout.Width (300));
 		GUILayout.Label ("Time Bonus:", GUILayout.Width (300));
 		GUILayout.Label ("Total Score:", GUILayout.Width (300));
@@ -93,17 +93,45 @@ public class ScoreBoard : MonoBehaviour {
 	}
 
 	string TimeBonus(int t) {
-		if (t < 10) {
-			bonus = "100000";
-		}
-		else if (t < 13) {
-			bonus = "075000";
-		}
-		else if (t < 15) {
-			bonus = "050000";
+		if (level == 1) {
+			if (t < 6) {
+				bonus = "200000";
+			}
+			else if (t < 8) {
+				bonus = "150000";
+			}
+			else if (t < 10) {
+				bonus = "100000";
+			}
+			else if (t < 12) {
+				bonus = "075000";
+			}
+			else if (t < 15) {
+				bonus = "050000";
+			}
+			else {
+				bonus = "025000";
+			}
 		}
 		else {
-			bonus = "025000";
+			if (t < 6) {
+				bonus = "200000";
+			}
+			else if (t < 8) {
+				bonus = "150000";
+			}
+			else if (t < 10) {
+				bonus = "100000";
+			}
+			else if (t < 12) {
+				bonus = "075000";
+			}
+			else if (t < 15) {
+				bonus = "050000";
+			}
+			else {
+				bonus = "025000";
+			}
 		}
 		int newTotal = System.Convert.ToInt32(bonus) + System.Convert.ToInt32 (score);
 		if (newTotal == 0) {
