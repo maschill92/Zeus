@@ -25,12 +25,14 @@ public class KeyedDoor : Interactable {
 		{
 			keyGod.Decrease(requiredKeys);
 			keysLeft = 0;
+			if (!audio.isPlaying)
+			{
+				audio.Play();
+			}
 		}
 
 		if (keysLeft <= 0)
 		{
-
-			AudioSource.PlayClipAtPoint (audio.clip, transform.position, 0.5f);
 			GetComponent<SlidingDoor>().Activate();
 		}
 	}

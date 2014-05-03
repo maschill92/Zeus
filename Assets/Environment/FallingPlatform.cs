@@ -16,13 +16,16 @@ public class FallingPlatform : MonoBehaviour {
 
 	void OnTriggerEnter()
 	{
+		if (!audio.isPlaying)
+		{
+			audio.Play ();
+		}
 		print ("I'm starting to fall!");
 		StartCoroutine("Fall");
 	}
 
 	IEnumerator Fall()
 	{
-		audio.Play ();
 		yield return new WaitForSeconds(fallTimeDelay);
 		rigidbody.isKinematic = false;
 		rigidbody.useGravity = true;
