@@ -20,7 +20,10 @@ public class PressureSwitch : AbstractResetable
 		{
 			for(int i = 0; i < thingsToActivate.Length; i++)
 			{
+				if (thingsToActivate[i]!= null)
+				{
 				thingsToActivate[i].Activate();
+				}
 			}
 			targetLocation.y = originalLoc.y - heightToLower;
 			audio.Play ();

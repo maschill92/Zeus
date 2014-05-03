@@ -5,6 +5,7 @@ public class LeverPuzzle : MonoBehaviour {
 
 	public puzzleLever[] leversInPuzzle; // this is important for order
 	private int currentLeverIndex = 0;
+	public Activatable ItemToActivate;
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +23,7 @@ public class LeverPuzzle : MonoBehaviour {
 			currentLeverIndex++;
 			if (currentLeverIndex == leversInPuzzle.Length)
 			{
+				ItemToActivate.Activate ();
 				print ("puzzle complete!");
 			}
 		}

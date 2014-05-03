@@ -66,9 +66,6 @@ public class RaisingPlatform : Activatable {
 			{
 				this.transform.position = new Vector3(originalLoc.x, newY, originalLoc.z);
 			}
-			if (audio.isPlaying == false) {
-				audio.Play ();
-			}
 		}
 	}
 	public override void Reset() { }
