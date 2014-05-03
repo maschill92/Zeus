@@ -93,47 +93,27 @@ public class ScoreBoard : MonoBehaviour {
 	}
 
 	string TimeBonus(int t) {
-		if (level == 1) {
-			if (t < 6) {
-				bonus = "200000";
-			}
-			else if (t < 8) {
-				bonus = "150000";
-			}
-			else if (t < 10) {
-				bonus = "100000";
-			}
-			else if (t < 12) {
-				bonus = "075000";
-			}
-			else if (t < 15) {
-				bonus = "050000";
-			}
-			else {
-				bonus = "025000";
-			}
+		int b = 300000;
+		b -= (10000 * t);
+		if (b >= 100000) {
+			bonus = "" + b;
+		}
+		else if (b >= 10000) {
+			bonus = "0" + b;
+		}
+		else if (b >= 1000) {
+			bonus = "00" + b;
+		}
+		else if (b >= 100) {
+			bonus = "000" + b;
+		}
+		else if (b >= 10) {
+			bonus = "0000" + b;
 		}
 		else {
-			if (t < 6) {
-				bonus = "200000";
-			}
-			else if (t < 8) {
-				bonus = "150000";
-			}
-			else if (t < 10) {
-				bonus = "100000";
-			}
-			else if (t < 12) {
-				bonus = "075000";
-			}
-			else if (t < 15) {
-				bonus = "050000";
-			}
-			else {
-				bonus = "025000";
-			}
+			bonus = "00000" + b;
 		}
-		int newTotal = System.Convert.ToInt32(bonus) + System.Convert.ToInt32 (score);
+		int newTotal = b + System.Convert.ToInt32 (score);
 		if (newTotal == 0) {
 			return ("000000");
 		}
