@@ -110,8 +110,11 @@ public class ScoreBoard : MonoBehaviour {
 		else if (b >= 10) {
 			bonus = "0000" + b;
 		}
-		else {
+		else if {b >= 1) {
 			bonus = "00000" + b;
+		}
+		else {
+			bonus = "000000";
 		}
 		int newTotal = b + System.Convert.ToInt32 (score);
 		if (newTotal == 0) {
