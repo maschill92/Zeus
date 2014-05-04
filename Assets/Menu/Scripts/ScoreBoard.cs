@@ -96,22 +96,22 @@ public class ScoreBoard : MonoBehaviour {
 		int b = 300000;
 		b -= (10000 * t);
 		if (b >= 100000) {
-			bonus = "" + b;
+			bonus = ("" + b);
 		}
 		else if (b >= 10000) {
-			bonus = "0" + b;
+			bonus = ("0" + b);
 		}
 		else if (b >= 1000) {
-			bonus = "00" + b;
+			bonus = ("00" + b);
 		}
 		else if (b >= 100) {
-			bonus = "000" + b;
+			bonus = ("000" + b);
 		}
 		else if (b >= 10) {
-			bonus = "0000" + b;
+			bonus = ("0000" + b);
 		}
-		else if {b >= 1) {
-			bonus = "00000" + b;
+		else if (b >= 1) {
+			bonus = ("00000" + b);
 		}
 		else {
 			bonus = "000000";
