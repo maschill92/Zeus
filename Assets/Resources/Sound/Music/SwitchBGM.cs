@@ -31,8 +31,8 @@ public class SwitchBGM : MonoBehaviour {
 	void OnTriggerExit(Collider c) {
 		if (c.tag == "Player") {
 			isColliding = true;
-			vol = outVol;
 			inside = false;
+			vol = outVol;
 			done = false;
 		}
 	}
@@ -49,7 +49,7 @@ public class SwitchBGM : MonoBehaviour {
 			audio.loop  = true;
 		}
 
-		if (audio.volume <= vol && !isColliding) {
+		if (audio.volume <= vol && !isColliding && done) {
 			audio.volume += fadeSpeed * Time.deltaTime;
 		}
 	}
