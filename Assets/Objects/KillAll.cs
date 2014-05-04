@@ -9,8 +9,11 @@ public class KillAll : MonoBehaviour {
 		{
 			other.transform.root.GetComponent<Manager>().Kill ();
 		}
-		else
+		else if(other.gameObject.GetComponent<FallingPlatform>()==null)
+
+		{
 			Destroy (other.gameObject);
+		}
 	}
 	
 	void OnTriggerEnter(Collider other)
@@ -19,7 +22,10 @@ public class KillAll : MonoBehaviour {
 		{
 			other.transform.root.GetComponent<Manager>().Kill ();
 		}
-		else
+		else if(other.gameObject.GetComponent<FallingPlatform>()==null)
+			
+		{
 			Destroy (other.gameObject);
-	}
+		}
+}
 }

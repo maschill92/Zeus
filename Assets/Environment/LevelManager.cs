@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour {
         AbstractResetable[] restables = FindObjectsOfType<AbstractResetable>();
         foreach (AbstractResetable item in restables)
         {
+			print(item.name);
             item.Reset();
         }
     }

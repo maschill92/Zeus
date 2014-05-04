@@ -3,7 +3,7 @@ using System.Collections;
 
 public class menuDeath : MonoBehaviour {
 	
-	private bool isDead;
+	private bool isDead=false;
 
 	private Texture blackScreen;
 
@@ -11,10 +11,9 @@ public class menuDeath : MonoBehaviour {
 		None, Main
 	}
 	
-	private Page currentPage;
+	private Page currentPage=Page.None;
 	
 	void Start () {
-		isDead = false;
 		blackScreen = Resources.Load ("BlackScreen") as Texture;
 	}
 	
@@ -106,13 +105,14 @@ public class menuDeath : MonoBehaviour {
 	}
 	
 	void EndDeath() {
+		FindObjectOfType<Manager>().Reset();
+		FindObjectOfType<LevelManager>().Reset ();
 		isDead = false;
 		AudioListener.pause = false;
 		GetComponent<guiPrompt> ().Reset ();
 		GetComponent<menuPause> ().enabled = true;
 		GetComponent<menuPause> ().UnPauseGame (false);
 		currentPage = Page.None;
-		FindObjectOfType<Manager>().Reset();
-        FindObjectOfType<LevelManager>().Reset();
+
 	}
 }

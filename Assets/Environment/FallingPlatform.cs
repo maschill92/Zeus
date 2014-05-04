@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FallingPlatform : MonoBehaviour {
+public class FallingPlatform : AbstractResetable {
 
 	public float fallTimeDelay = 2.0f;
 	public float fallDistance = 150.0f;
@@ -14,14 +14,18 @@ public class FallingPlatform : MonoBehaviour {
 		finalHeight = transform.position.y - fallDistance;
 	}
 
-	void OnTriggerEnter()
+	void OnTriggerEnter(Collider Other)
 	{
-		if (!audio.isPlaying)
+		if (Other.tag == "Player") 
 		{
-			audio.Play ();
+			if (!audio.isPlaying) {
+					audio.Play ();
+			}
+
+			print ("I'm starting to fall!");
+			StartCoroutine ("Fall");
 		}
-		print ("I'm starting to fall!");
-		StartCoroutine("Fall");
+
 	}
 
 	IEnumerator Fall()
@@ -37,7 +41,7 @@ public class FallingPlatform : MonoBehaviour {
 		rigidbody.useGravity = false;
 	}
 
-	public void Reset()
+	public override void Reset()
 	{
 		this.transform.position = originalLoc;
 		rigidbody.isKinematic = true;

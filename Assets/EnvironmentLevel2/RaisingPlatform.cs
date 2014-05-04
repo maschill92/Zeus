@@ -68,5 +68,7 @@ public class RaisingPlatform : Activatable {
 			}
 		}
 	}
-	public override void Reset() { }
+	public override void Reset() 
+	{
+	}
 }
