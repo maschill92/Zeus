@@ -125,6 +125,7 @@ public class menuPause : MonoBehaviour
 	}
 	
 	public void PauseGame(bool check) {
+		Screen.showCursor = true;
 		savedTimeScale = Time.timeScale;
 		Time.timeScale = 0;
 		AudioListener.pause = true;
@@ -150,6 +151,7 @@ public class menuPause : MonoBehaviour
 		if (check) {
 			currentPage = Page.None;
 		}
+		Screen.showCursor = false;
 	}
 	
 	bool IsGamePaused() {
