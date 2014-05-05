@@ -7,28 +7,29 @@ public class SlidingDoor : Activatable {
 	public float heightToRaise = 2f;
 	public float slideSpeed = 2f;
 	private Vector3 targetLocation;
+	private Vector3 lastPosition;
 
 	void Start()
 	{
 		originalLoc = this.transform.position;
 		targetLocation = originalLoc;
+		lastPosition = originalLoc;
 	}
 
 	public override void Activate ()
 	{
 		targetLocation.y = originalLoc.y + heightToRaise;
-		audio.Play ();
 	}
 
 	public override void Deactivate ()
 	{
 		targetLocation.y = originalLoc.y;
-		audio.Play ();
 	}
 
 
 	void Update()
 	{
+
 		// Move up
 		if (this.transform.position.y < targetLocation.y)
 		{
@@ -41,7 +42,11 @@ public class SlidingDoor : Activatable {
 			{
 				this.transform.position = new Vector3(originalLoc.x, newY, originalLoc.z);
 			}
-			if (this.transform.position.y == targetLocation.y || this.transform.position.y == originalLoc.y)
+			if (lastPosition != this.transform.position && audio.isPlaying == false)
+			{
+				audio.Play ();
+			}
+			if (lastPosition == this.transform.position)
 			{
 				audio.Stop ();
 			}
@@ -59,11 +64,16 @@ public class SlidingDoor : Activatable {
 			{
 				this.transform.position = new Vector3(originalLoc.x, newY, originalLoc.z);
 			}
-			if (audio.isPlaying == false) {
+			if (lastPosition != this.transform.position && audio.isPlaying == false)
+			{
 				audio.Play ();
 			}
+			if (lastPosition == this.transform.position)
+			{
+				audio.Stop ();
+			}
 		}
-
+		lastPosition = this.transform.position;
 	}
 
     public override void Reset() { }
