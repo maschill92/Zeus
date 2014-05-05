@@ -203,6 +203,6 @@ public class menuMain : MonoBehaviour {
 		//Score=0
 		//FirstTime=00:00
 		//SecondTime=00:00
-		System.IO.File.WriteAllText ("C:\\SavedGames\\Hunt\\data.txt", "Score=000000\nFirstTime=00:00\nSecondTime=00:00");
+		System.IO.File.WriteAllText ("C:\\SavedGames\\Hunt\\data.txt", "Score=000000\nFirstTime=00:00\nSecondTime=00:00\nHealth=5");
 	}
 }

@@ -25,9 +25,10 @@ public class Endpoint : MonoBehaviour {
 		}
 		string score = FindObjectOfType<guiScore> ().Get ();
 		string time = FindObjectOfType<guiTime> ().Get ();
+		string health = FindObjectOfType<guiHealth> ().Get ();
 		string write = "";
 		if (currentLevel == 1) {
-			write = ("Score=" + score + "\nFirstTime=" + time + "\nSecondTime=00:00");
+			write = ("Score=" + score + "\nFirstTime=" + time + "\nSecondTime=00:00" + "\nHealth=" + health);
 		}
 		else if (currentLevel == 2) {
 			System.IO.FileInfo file = new System.IO.FileInfo ("C:\\SavedGames\\Hunt\\data.txt");
@@ -45,7 +46,7 @@ public class Endpoint : MonoBehaviour {
 				}
 			}
 			reader.Close ();
-			write = ("Score=" + score + "\nFirstTime=" + fTime + "\nSecondTime=" + time);
+			write = ("Score=" + score + "\nFirstTime=" + fTime + "\nSecondTime=" + time + "\nHealth=" + health);
 		}
 		System.IO.File.WriteAllText ("C:\\SavedGames\\Hunt\\data.txt", write);
 	}

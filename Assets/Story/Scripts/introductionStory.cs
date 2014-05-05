@@ -14,7 +14,7 @@ public class introductionStory : MonoBehaviour {
 		AudioListener.pause = false;
 		introStills = new Texture[5]; // change depending on number of stills
 		for (int i = 0; i < 5; i++) { // change this as well based on number of stills
-			//string loadTexture = ("IntroStill" + i); // use this when stills from movie are ready
+			//string loadTexture = ("IntroStill" + (i + 1)); // use this when stills from movie are ready
 			string loadTexture = "BlackScreen"; // temporary until stills are ready, delete afterwards
 			introStills[i] = Resources.Load (loadTexture) as Texture;
 		}

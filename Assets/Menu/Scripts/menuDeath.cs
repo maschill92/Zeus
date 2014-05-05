@@ -55,13 +55,15 @@ public class menuDeath : MonoBehaviour {
 		BeginPage(200,200);
 		GUI.skin.label.fontSize = 32;
 		GUI.color = Color.white;
-		int trysRemaining = GetComponent<guiHealth> ().Get ();
+		string trysRemaining = GetComponent<guiHealth> ().Get ();
 		string restartText;
-		if (trysRemaining != 1)
-			restartText = ("Restart (" + trysRemaining.ToString() + " lives remaining)");
-		else
-			restartText = ("Restart (" + trysRemaining.ToString() + " life remaining)");
-		if (trysRemaining > 0) { // only display if current lives are greater than zero
+		if (!trysRemaining.Equals ("1")) {
+			restartText = ("Restart (" + trysRemaining + " lives remaining)");
+		}
+		else {
+			restartText = ("Restart (" + trysRemaining + " life remaining)");
+		}
+		if (!trysRemaining.Equals ("0")) { // only display if current lives are greater than zero
 			if (GUILayout.Button (restartText)) {
 				EndDeath ();
 			}
@@ -113,6 +115,5 @@ public class menuDeath : MonoBehaviour {
 		GetComponent<menuPause> ().enabled = true;
 		GetComponent<menuPause> ().UnPauseGame (false);
 		currentPage = Page.None;
-
 	}
 }
