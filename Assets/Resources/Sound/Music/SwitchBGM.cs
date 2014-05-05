@@ -38,10 +38,10 @@ public class SwitchBGM : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		if (isColliding && audio.volume > .1) {
+		if (isColliding && audio.volume > .01) {
 			audio.volume -= fadeSpeed * Time.deltaTime;
 		}
-		if (audio.volume < .1 && !done) {
+		if (audio.volume < .01 && !done) {
 			done = true;
 			isColliding = false;
 			audio.clip = inside ? insideClip : outsideClip;
