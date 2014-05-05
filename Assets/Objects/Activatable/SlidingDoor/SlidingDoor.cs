@@ -7,22 +7,22 @@ public class SlidingDoor : Activatable {
 	public float heightToRaise = 2f;
 	public float slideSpeed = 2f;
 	private Vector3 targetLocation;
-	private Vector3 lastPosition;
 
 	void Start()
 	{
 		originalLoc = this.transform.position;
 		targetLocation = originalLoc;
-		lastPosition = originalLoc;
 	}
 
 	public override void Activate ()
 	{
+		audio.Play ();
 		targetLocation.y = originalLoc.y + heightToRaise;
 	}
 
 	public override void Deactivate ()
 	{
+		audio.Play ();
 		targetLocation.y = originalLoc.y;
 	}
 
@@ -36,19 +36,11 @@ public class SlidingDoor : Activatable {
 			float newY = this.transform.position.y + (slideSpeed * Time.deltaTime);
 			if (newY > targetLocation.y)
 			{
-				this.transform.position = new Vector3(originalLoc.x, targetLocation.y, originalLoc.z);
+				this.transform.position = new Vector3 (originalLoc.x, targetLocation.y, originalLoc.z);
 			}
 			else
 			{
-				this.transform.position = new Vector3(originalLoc.x, newY, originalLoc.z);
-			}
-			if (lastPosition != this.transform.position && audio.isPlaying == false)
-			{
-				audio.Play ();
-			}
-			if (lastPosition == this.transform.position)
-			{
-				audio.Stop ();
+				this.transform.position = new Vector3 (originalLoc.x, newY, originalLoc.z);
 			}
 		}
 
@@ -58,22 +50,18 @@ public class SlidingDoor : Activatable {
 			float newY = this.transform.position.y - (slideSpeed * Time.deltaTime);
 			if (newY < targetLocation.y)
 			{
-				this.transform.position = new Vector3(originalLoc.x, targetLocation.y, originalLoc.z);
+				this.transform.position = new Vector3 (originalLoc.x, targetLocation.y, originalLoc.z);
 			}
 			else
 			{
-				this.transform.position = new Vector3(originalLoc.x, newY, originalLoc.z);
-			}
-			if (lastPosition != this.transform.position && audio.isPlaying == false)
-			{
-				audio.Play ();
-			}
-			if (lastPosition == this.transform.position)
-			{
-				audio.Stop ();
+				this.transform.position = new Vector3 (originalLoc.x, newY, originalLoc.z);
 			}
 		}
-		lastPosition = this.transform.position;
+
+		else
+		{	
+			audio.Stop ();
+		}
 	}
 
     public override void Reset() { }
