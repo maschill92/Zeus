@@ -21,6 +21,7 @@ public class menuMain : MonoBehaviour {
 		"Alex Lewis:",
 		"\tEnvironment Design",
 		"\tObject Art/Animation\n",
+		"\tObject Programm\n",
 		"Michael Schilling:",
 		"\tCharacter Controls",
 		"\tObject Programming",
@@ -29,8 +30,20 @@ public class menuMain : MonoBehaviour {
 		"Kasie Kinzler:",
 		"\tArt Stills\n",
 		"Someone:",
-		"\tNarrator\n",
+		"\tTy Bommersbach or Mike Redlin\n",
+		"Someone Else:\n",
+		"\tTy Bommersbach or Mike Redlin\n",
 		"Accomodations:",
+		"This game uses these art objects from OpenGameArt.org:",
+		"\t\"Medieval Trestle Table\" by ulf (http://opengameart.org/users/ulf)",
+		"\t\"Sickle\" by johndh (http://opengameart.org/users/johndh)",
+		"\t\"Wooden Bridge 3D model\" by WeaponGuy (http://opengameart.org/users/weaponguy)\n",
+		"This game uses these music files from Newgrounds.com:",
+		"\t\".dystopia.\" by VegetarianMeat (http://vegetarianmeat.newgrounds.com/)\n",
+		"\t\"Lower Dungeon\" by shesmackshard (http://shesmackshard.newgrounds.com/)",
+		"This game uses these music files from OpenGameArt.org:",
+		"\t\"Evil_bgm\" by teckpow (http://opengameart.org/users/teckpow)",
+		"\t\"Shades\" by jalastram (http://opengameart.org/users/jalastram)\n",
 		"This game uses these sounds from OpenGameArt.org:",
 		"\t\"sell_buy_item.wav\" by Ogrebane (http://opengameart.org/users/ogrebane)",
 		"\t\"waterfall1.ogg\" and \"stream1.ogg\" by kurt (http://opengameart.org/users/kurt)\n",
@@ -203,6 +216,7 @@ public class menuMain : MonoBehaviour {
 		//Score=0
 		//FirstTime=00:00
 		//SecondTime=00:00
+		//Health=5
 		System.IO.File.WriteAllText ("C:\\SavedGames\\Hunt\\data.txt", "Score=000000\nFirstTime=00:00\nSecondTime=00:00\nHealth=5");
 	}
 }
