@@ -9,13 +9,13 @@ public class endingStory : MonoBehaviour {
 	void Start () {
 		Time.timeScale = 1;
 		AudioListener.pause = false;
-		endStill = Resources.Load ("BlackScreen") as Texture;; // change to end art still when ready.
+		endStill = Resources.Load ("EndingStill") as Texture;;
 		beginTime = Time.time;
-		//audio.Play (); start narration audio clip
+		audio.Play ();
 	}
 	
 	void LateUpdate () {
-		if ((Time.time - beginTime) >= 0.0f) { // change 0 to narration clip time
+		if ((Time.time - beginTime) >= 12.0f) {
 			Application.LoadLevel("ScoreBoard2");
 		}
 	}
