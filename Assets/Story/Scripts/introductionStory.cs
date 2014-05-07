@@ -13,10 +13,9 @@ public class introductionStory : MonoBehaviour {
 		Time.timeScale = 1;
 		AudioListener.pause = false;
 		string loadTexture = "";
-		introStills = new Texture[5]; // change depending on number of stills
-		for (int i = 0; i < 5; i++) { // change this as well based on number of stills
-			//string loadTexture = ("IntroStill" + (i + 1)); // use this when stills from movie are ready
-			loadTexture = "BlackScreen"; // temporary until stills are ready, delete afterwards
+		introStills = new Texture[6];
+		for (int i = 0; i < 6; i++) {
+			loadTexture = ("IntroductionStill" + (i + 1));
 			introStills[i] = Resources.Load (loadTexture) as Texture;
 		}
 		beginTime = Time.time;
@@ -29,7 +28,7 @@ public class introductionStory : MonoBehaviour {
 		if ((Time.time - beginTime) >= 30.0f) {
 			Application.LoadLevel ("Level1");
 		}
-		if (((Time.time - lastUpdate) >= 6.0f) && (stillIndex != 5)) { // change 6 to narration clip time divided by the number of stills
+		if (((Time.time - lastUpdate) >= 5.0f) && (stillIndex != 6)) {
 			stillIndex++;
 			lastUpdate = Time.time;
 		}
