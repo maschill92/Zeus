@@ -4,18 +4,41 @@ using System.Collections;
 public class ScoreBoard : MonoBehaviour {
 
 	public int level;
-	private string[] fileContents; // score, time1, time2, health
+	//private string[] fileContents; // score, time1, time2, health
+	private string score = "";
+	private string time1 = "";
+	private string time2 = "";
+	private string health = "";
 	private string timeBonus = "";
 	private string healthBonus = "";
-	private string addTotals = "";
+	private string newTotalScore = "";
 	private Texture blackScreen;
 
 	void Start () {
 		Time.timeScale = 1;
 		Screen.showCursor = true;
 		blackScreen = Resources.Load ("BlackScreen") as Texture;
-		fileContents = new string[4];
-		FileOperations ();
+		score = menuMain.score;
+		time1 = menuMain.time1;
+		time2 = menuMain.time2;
+		health = menuMain.health;
+		string minute = "";
+		string text = "";
+		if (level == 1) {
+			text = time1;
+		}
+		else if (level == 2) {
+			text = time2;
+		}
+
+		for (int i = 0; i < text.Length; i++) {
+			if (text[i] == ':') {
+				break;
+			}
+			minute += ("" + text[i]);
+		}
+		newTotalScore = CalculateBonus (System.Convert.ToInt32 (minute));
+		menuMain.score = newTotalScore;
 	}
 	
 	void OnGUI() {
@@ -60,14 +83,14 @@ public class ScoreBoard : MonoBehaviour {
 		GUILayout.Label ("Total Score:", GUILayout.Width (250));
 		GUILayout.EndVertical ();
 		GUILayout.BeginVertical ();
-		GUILayout.Label (fileContents[1]);
+		GUILayout.Label (time1);
 		if (level == 2) {
-			GUILayout.Label (fileContents[2]);
+			GUILayout.Label (time2);
 		}
-		GUILayout.Label (fileContents[0]);
+		GUILayout.Label (score);
 		GUILayout.Label (timeBonus);
 		GUILayout.Label (healthBonus);
-		GUILayout.Label (addTotals);
+		GUILayout.Label (newTotalScore);
 		GUILayout.EndVertical ();
 		GUILayout.EndHorizontal ();
 		EndPage ();
@@ -118,7 +141,7 @@ public class ScoreBoard : MonoBehaviour {
 
 	string CalculateBonus(int t) {
 		int b = 300000;
-		int h = (System.Convert.ToInt32 (fileContents[3]) - 1);
+		int h = (System.Convert.ToInt32 (health) - 1);
 		b -= (10000 * t);
 		if (b > 0) {
 			timeBonus = ScoreFormat (b);
@@ -128,52 +151,7 @@ public class ScoreBoard : MonoBehaviour {
 		}
 		h = (h * 25000);
 		healthBonus = ScoreFormat (h);
-		int newTotal = b + h + System.Convert.ToInt32 (fileContents[0]);
+		int newTotal = b + h + System.Convert.ToInt32 (score);
 		return ScoreFormat (newTotal);
-	}
-
-	void FileOperations() {
-		if (!System.IO.Directory.Exists ("C:\\SavedGames\\Hunt")) {
-			return;
-		}
-		System.IO.FileInfo file = new System.IO.FileInfo ("C:\\SavedGames\\Hunt\\data.txt");
-		System.IO.StreamReader reader = file.OpenText();
-		string fileRead;
-		string text;
-		bool startRead;
-		for (int i = 0; i < 4; i++) {
-			startRead = false;
-			text = "";
-			fileRead = reader.ReadLine ();
-			for (int j = 0; j < fileRead.Length; j++) {
-				if (fileRead[j] == '=') {
-					startRead = true;
-				}
-				else if (startRead == true) {
-					text += ("" + fileRead[j]);
-				}
-			}
-			fileContents[i] = "" + text;
-		}
-		reader.Close ();
-		string minute = "";
-		if (level == 1) {
-			for (int i = 0; i < fileContents[1].Length; i++) {
-				if (fileContents[1][i] == ':') {
-					break;
-				}
-				minute += ("" + fileContents[1][i]);
-			}
-		}
-		else if (level == 2) {
-			for (int i = 0; i < fileContents[2].Length; i++) {
-				if (fileContents[2][i] == ':') {
-					break;
-				}
-				minute += ("" + fileContents[2][i]);
-			}
-		}
-		addTotals = CalculateBonus (System.Convert.ToInt32 (minute));
-		System.IO.File.WriteAllText ("C:\\SavedGames\\Hunt\\data.txt", "Score=" + addTotals + "\nFirstTime=" + fileContents[1] + "\nSecondTime=" + fileContents[2] + "\nHealth=" + fileContents[3]);
 	}
 }
