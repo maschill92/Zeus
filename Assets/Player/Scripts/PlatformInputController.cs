@@ -1,3 +1,5 @@
+//Michael Schilling
+//CSci 448
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
