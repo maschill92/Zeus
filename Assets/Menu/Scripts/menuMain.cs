@@ -63,6 +63,12 @@ public class menuMain : MonoBehaviour {
 	private Texture spaceImage;
 	private Texture shiftImage;
 
+	//global variables
+	public static string score;
+	public static string time1;
+	public static string time2;
+	public static string health;
+
 	Vector2 scrollPosition;
 
 	public enum Page {
@@ -72,6 +78,10 @@ public class menuMain : MonoBehaviour {
 	private Page currentPage;
 
 	void Start () {
+		score = "000000";
+		time1 = "00:00";
+		time2 = "00:00";
+		health = "5";
 		Time.timeScale = 1;
 		AudioListener.pause = false;
 		mouseImage = Resources.Load ("MouseKey") as Texture;
@@ -79,7 +89,6 @@ public class menuMain : MonoBehaviour {
 		eImage = Resources.Load ("EKey") as Texture;
 		spaceImage = Resources.Load ("SpaceKey") as Texture;
 		shiftImage = Resources.Load ("ShiftKey") as Texture;
-		InitializeFile ();
 	}
 
 	void OnGUI () {
@@ -206,16 +215,5 @@ public class menuMain : MonoBehaviour {
 			Application.Quit ();
 		}
 		EndPage();
-	}
-
-	void InitializeFile() {
-		if (!System.IO.Directory.Exists("C:\\SavedGames\\Hunt")) {
-			System.IO.Directory.CreateDirectory("C:\\SavedGames\\Hunt");
-		}
-		//Score=0
-		//FirstTime=00:00
-		//SecondTime=00:00
-		//Health=5
-		System.IO.File.WriteAllText ("C:\\SavedGames\\Hunt\\data.txt", "Score=000000\nFirstTime=00:00\nSecondTime=00:00\nHealth=5");
 	}
 }

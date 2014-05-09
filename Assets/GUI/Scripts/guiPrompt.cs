@@ -4,6 +4,7 @@ using System.Collections;
 public class guiPrompt : MonoBehaviour {
 
 	private int promptSecond;
+	private int numberOfKeys = 0;
 	private float lastUpdate;
 
 	private Texture eImage;
@@ -11,7 +12,7 @@ public class guiPrompt : MonoBehaviour {
 	private Texture shiftImage;
 
 	public enum Page {
-		None, Interact, Jump, Sprint, Key
+		None, Interact, Jump, Sprint, Key, MoreKeys
 	}
 	
 	private Page currentPage;
@@ -52,6 +53,9 @@ public class guiPrompt : MonoBehaviour {
 			case Page.Key:
 				ShowKey();
 				break;
+			case Page.MoreKeys:
+			ShowMoreKeys (numberOfKeys);
+				break;
 			default:
 				currentPage = Page.None;
 				break;
@@ -80,6 +84,11 @@ public class guiPrompt : MonoBehaviour {
 
 	public void ActivateKeyPrompt() { // call to display Key prompt
 		currentPage = Page.Key;
+	}
+	
+	public void ActivateMoreKeysPrompt(int value) { // call to display More Keys prompt
+		numberOfKeys = value;
+		currentPage = Page.MoreKeys;
 	}
 
 	void ShowInteract() {
@@ -134,10 +143,31 @@ public class guiPrompt : MonoBehaviour {
 		GUI.color = Color.white;
 		GUI.skin.label.fontSize = 32;
 		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
-		BeginPage (1000, 200);
+		BeginPage (1000, 100);
 		GUILayout.BeginHorizontal ();
 		GUILayout.FlexibleSpace ();
 		GUILayout.Label ("Find Keys to Use on Locked Doors", GUILayout.Width (550), GUILayout.Height (75));
+		GUILayout.FlexibleSpace ();
+		GUILayout.EndHorizontal ();
+		GUI.skin.label.alignment = TextAnchor.UpperLeft;
+		GUILayout.EndArea();
+	}
+
+	void ShowMoreKeys(int value) {
+		GUI.color = Color.white;
+		GUI.skin.label.fontSize = 32;
+		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
+		string text = "";
+		if (value == 1) {
+			text = ("You Need " + value + " More Key to Unlock This Door");
+		}
+		else {
+			text = ("You Need " + value + " More Keys to Unlock This Door");
+		}
+		BeginPage (1000, 100);
+		GUILayout.BeginHorizontal ();
+		GUILayout.FlexibleSpace ();
+		GUILayout.Label (text, GUILayout.Width (800), GUILayout.Height (75));
 		GUILayout.FlexibleSpace ();
 		GUILayout.EndHorizontal ();
 		GUI.skin.label.alignment = TextAnchor.UpperLeft;

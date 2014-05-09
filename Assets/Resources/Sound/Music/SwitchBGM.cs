@@ -41,7 +41,7 @@ public class SwitchBGM : MonoBehaviour {
 		if (isColliding && audio.volume > .01) {
 			audio.volume -= fadeSpeed * Time.deltaTime;
 		}
-		if (audio.volume < .01 && !done) {
+		if (audio.volume <= .01 && !done) {
 			done = true;
 			isColliding = false;
 			audio.clip = inside ? insideClip : outsideClip;
@@ -49,7 +49,7 @@ public class SwitchBGM : MonoBehaviour {
 			audio.loop  = true;
 		}
 
-		if (audio.volume <= vol && !isColliding && done) {
+		if (audio.volume <= vol && !isColliding) {
 			audio.volume += fadeSpeed * Time.deltaTime;
 		}
 	}

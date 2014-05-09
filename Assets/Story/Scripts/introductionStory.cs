@@ -28,7 +28,7 @@ public class introductionStory : MonoBehaviour {
 		if ((Time.time - beginTime) >= 30.0f) {
 			Application.LoadLevel ("Level1");
 		}
-		if (((Time.time - lastUpdate) >= 5.0f) && (stillIndex != 6)) {
+		if (((Time.time - lastUpdate) >= 5.0f) && (stillIndex < 6)) {
 			stillIndex++;
 			lastUpdate = Time.time;
 		}

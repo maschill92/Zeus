@@ -3,36 +3,40 @@ using System.Collections;
 
 public class guiScore : MonoBehaviour {
 
-	public int totalScore;
-	private string displayScore;
+	public int totalScore = 0;
+	private string displayScore = "";
 
 	void Start() {
 		totalScore = 0;
 		displayScore = "";
-		LoadScore ();
+		Set (System.Convert.ToInt32 (menuMain.score));
 	}
 
 	void Update() {
-		if (totalScore == 0) {
-			displayScore = "000000";
+		displayScore = ScoreFormat (totalScore);
+	}
+
+	string ScoreFormat(int s) {
+		if (s == 0) {
+			return ("000000");
 		}
-		else if (totalScore < 10) {
-			displayScore = "00000" + totalScore;
+		else if (s < 10) {
+			return ("00000" + s);
 		}
-		else if (totalScore < 100) {
-			displayScore = "0000" + totalScore;
+		else if (s < 100) {
+			return ("0000" + s);
 		}
-		else if (totalScore < 1000) {
-			displayScore = "000" + totalScore;
+		else if (s < 1000) {
+			return ("000" + s);
 		}
-		else if (totalScore < 10000) {
-			displayScore = "00" + totalScore;
+		else if (s < 10000) {
+			return ("00" + s);
 		}
-		else if (totalScore < 100000) {
-			displayScore = "0" + totalScore;
+		else if (s < 100000) {
+			return ("0" + s);
 		}
 		else {
-			displayScore = "" + totalScore;
+			return ("" + s);
 		}
 	}
 
@@ -60,6 +64,7 @@ public class guiScore : MonoBehaviour {
 
 	public void Increase(int value) {
 		totalScore += value;
+		menuMain.score = ScoreFormat (totalScore);
 	}
 
 	public void Set(int value) {
@@ -68,26 +73,5 @@ public class guiScore : MonoBehaviour {
 
 	public string Get() {
 		return displayScore;
-	}
-
-	void LoadScore() {
-		if (!System.IO.Directory.Exists ("C:\\SavedGames\\Hunt")) {
-			return;
-		}
-		System.IO.FileInfo file = new System.IO.FileInfo ("C:\\SavedGames\\Hunt\\data.txt");
-		System.IO.StreamReader reader = file.OpenText();
-		string text = reader.ReadLine ();
-		string score = "";
-		bool startRead = false;
-		for (int i = 0; i < text.Length; i++) {
-			if (text[i] == '=') { // start reading data
-				startRead = true;
-			}
-			else if (startRead == true) {
-				score += ("" + text[i]);
-			}
-		}
-		reader.Close ();
-		Set (System.Convert.ToInt32 (score));
 	}
 }
