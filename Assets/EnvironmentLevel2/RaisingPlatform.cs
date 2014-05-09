@@ -22,7 +22,9 @@ public class RaisingPlatform : Activatable {
 
 	public override void Activate ()
 	{
+		audio.Stop ();
 		targetLocation.y = originalLoc.y + heightToRaise;
+		audio.Play ();
 	}
 	public override void Deactivate ()
 	{
@@ -52,10 +54,6 @@ public class RaisingPlatform : Activatable {
 			{
 				this.transform.position = new Vector3(originalLoc.x, newY, originalLoc.z);
 			}
-			if (this.transform.position.y == targetLocation.y || this.transform.position.y == originalLoc.y)
-			{
-
-			}
 		}
 		else if (this.transform.position.y > targetLocation.y)
 		{
@@ -68,6 +66,10 @@ public class RaisingPlatform : Activatable {
 			{
 				this.transform.position = new Vector3(originalLoc.x, newY, originalLoc.z);
 			}
+		}
+		if (this.transform.position.y == targetLocation.y || this.transform.position.y == originalLoc.y)
+		{
+			audio.Stop ();
 		}
 	}
 	public override void Reset() 
