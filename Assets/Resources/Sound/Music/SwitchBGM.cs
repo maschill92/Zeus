@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//Ben Carpenter
+//CSci 448
+using UnityEngine;
 using System.Collections;
 
 public class SwitchBGM : MonoBehaviour {

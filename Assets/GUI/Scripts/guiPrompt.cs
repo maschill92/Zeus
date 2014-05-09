@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//Randall Howatt
+//CSci 448
+using UnityEngine;
 using System.Collections;
 
 public class guiPrompt : MonoBehaviour {

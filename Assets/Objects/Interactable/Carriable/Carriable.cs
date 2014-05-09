@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//Michael Schilling
+//CSci 448
+using UnityEngine;
 using System.Collections;
 
 [RequireComponent (typeof(Rigidbody))]
