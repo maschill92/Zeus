@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//Alex Lewis
+//CSci 448
+using UnityEngine;
 using System.Collections;
 
 public class RaisingPlatform : Activatable {

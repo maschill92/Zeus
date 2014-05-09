@@ -1,3 +1,5 @@
+//Randall Howatt
+//CSci 448
 using UnityEngine;
 using System.Collections;
 
