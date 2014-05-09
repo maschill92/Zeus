@@ -20,12 +20,14 @@ public abstract class Carriable : Interactable {
 			joint.damper = 0;
 			joint.maxDistance = 0;
 			isBeingCarried = true;
+			collider.isTrigger = true;
 		}
 		else
 		{
 			Destroy(joint);
 			isBeingCarried = false;
 			rigidbody.constraints = RigidbodyConstraints.None;
+			collider.isTrigger = false;
 		}
 	}
 }
