@@ -20,6 +20,9 @@ public class KeyedDoor : Interactable {
 		{
 			keyGod.Decrease(keyCount);
 			keysLeft -= keyCount;
+			if (keysLeft != 0 ) {
+				FindObjectOfType<guiPrompt>().ActivateMoreKeysPrompt (keysLeft);
+			}
 		}
 		else
 		{
