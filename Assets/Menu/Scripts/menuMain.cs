@@ -50,6 +50,7 @@ public class menuMain : MonoBehaviour {
 		"\t\"Shades\" by jalastram (http://opengameart.org/users/jalastram)\n",
 		"This game uses these sounds from OpenGameArt.org:",
 		"\t\"sell_buy_item.wav\" by Ogrebane (http://opengameart.org/users/ogrebane)",
+		"\t\"sheep2.flac\" by Lamroot (http://opengameart.org/users/lamoot)",
 		"\t\"waterfall1.ogg\" and \"stream1.ogg\" by kurt (http://opengameart.org/users/kurt)\n",
 		"This game uses these sounds from freesound.org:",
 		"\t\"bats.wav\" by soundbytez (http://www.freesound.org/people/soundbytez/)",
