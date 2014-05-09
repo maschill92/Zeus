@@ -9,10 +9,15 @@ public class Manager : MonoBehaviour
 	public float interactDistance = 1.25f;
 	public LayerMask layerMask;
     public Checkpoint lastCheckpoint;
+	private AudioClip TyJump;
+	private AudioClip TyBreathe;
+	private CharacterMotor motor;
 
 	void Start()
 	{
 		playerCamera = GetComponentInChildren<Camera>();
+		TyJump = Resources.Load ("Sound/TyJump") as AudioClip;
+		motor = GetComponent<CharacterMotor> ();
 	}
 
 	void Update()
@@ -24,6 +29,19 @@ public class Manager : MonoBehaviour
 		    {
 				hitInfo.transform.gameObject.GetComponent<Interactable>().Interact(this.playerCamera.GetComponentInChildren<Rigidbody>().transform);
 			}
+		}
+		if (motor.IsSprinting () && motor.movement.velocity.magnitude >= 0.5) {
+			if (!audio.isPlaying) {
+				audio.Play ();
+			}
+		}
+		else
+		{
+			audio.Stop ();
+		}
+		if (Input.GetButtonDown ("Jump") && motor.grounded)
+		{
+			AudioSource.PlayClipAtPoint (TyJump, transform.position, 0.15f);
 		}
 	}
     
