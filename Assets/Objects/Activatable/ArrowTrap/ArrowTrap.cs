@@ -29,6 +29,7 @@ public class ArrowTrap : Activatable {
 
 	void OnTriggerEnter(Collider other)
 	{
+		print ("player trigger " + arrowParticles.name);
 		if(other.tag == "Player" && arrowParticles != null && arrowParticles.isPlaying)
 		{
 			other.gameObject.GetComponent<Manager>().Kill();
