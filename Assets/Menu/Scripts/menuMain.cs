@@ -30,6 +30,8 @@ public class menuMain : MonoBehaviour {
 		"Special Thanks:\n",
 		"Kasie Kinzler:",
 		"\tArt Stills\n",
+		"Rose Diemert:",
+		"\tFirst Semester Team Member\n",
 		"Mike Redlin:",
 		"\tPrimary Narrator\n",
 		"Ty Bommersbach:",
@@ -56,7 +58,9 @@ public class menuMain : MonoBehaviour {
 		"\t\"Indy Blow Darts Cue 3.wav\" edited from pscsound (http://www.freesound.org/people/pscsound/)",
 		"\t\"Iron gate, street.wav\" edited from Trautwein (http://www.freesound.org/people/Trautwein/)",
 		"\t\"Keys1.wav\" by EverHeat (http://www.freesound.org/people/EverHeat/)",
-		"\t\"Moving a boulder.wav\" edited from BW_Clowes (http://www.freesound.org/people/BW_Clowes/)"
+		"\t\"Moving a boulder.wav\" edited from BW_Clowes (http://www.freesound.org/people/BW_Clowes/)\n",
+		"This game features images rendered on the CrayOwulf Cluster in the Computer Science Department using RayGL (courtesy Kris Zarns) and POVRAY (www.povray.org).\n",
+		"This game is distrubted under Creative Commons 0 (https://creativecommons.org/publicdomain/zero/1.0/)"
 		} ;
 
 	private Texture mouseImage;
