@@ -9,8 +9,13 @@ public class LevelManager : MonoBehaviour {
         AbstractResetable[] restables = FindObjectsOfType<AbstractResetable>();
         foreach (AbstractResetable item in restables)
         {
-			print(item.name);
             item.Reset();
         }
+
+		Carriable[] carriables = FindObjectsOfType<Carriable>();
+		foreach (Carriable c in carriables)
+		{
+			if (c.isBeingCarried) Destroy(c.gameObject);
+		}
     }
 }
