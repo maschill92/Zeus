@@ -34,6 +34,9 @@ public class introductionStory : MonoBehaviour {
 			stillIndex++;
 			lastUpdate = Time.time;
 		}
+		if (Input.GetKeyDown ("escape")) {
+			Application.LoadLevel ("Level1");
+		}
 	}
 
 	void OnGUI() {

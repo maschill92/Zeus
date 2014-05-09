@@ -20,6 +20,9 @@ public class transitionStory : MonoBehaviour {
 		if ((Time.time - beginTime) >= 12.0f) {
 			Application.LoadLevel("Level2");
 		}
+		if (Input.GetKeyDown ("escape")) {
+			Application.LoadLevel ("Level2");
+		}
 	}
 	
 	void OnGUI() {

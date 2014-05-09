@@ -20,6 +20,9 @@ public class endingStory : MonoBehaviour {
 		if ((Time.time - beginTime) >= 12.0f) {
 			Application.LoadLevel("ScoreBoard2");
 		}
+		if (Input.GetKeyDown ("escape")) {
+			Application.LoadLevel ("ScoreBoard2");
+		}
 	}
 
 	void OnGUI() {
